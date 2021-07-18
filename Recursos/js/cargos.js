@@ -47,11 +47,7 @@ $(document).ready(function () {
                                                     <th>Galeria</th>
                                                     <th>Esal</th>
                                                     <th>Noticias</th>
-                                                    <th>Eventos</th>
-                                                    <th>Reservas</th>                                                    
-                                                    <th>Visitantes</th>                                                   
-                                                    <th>Visitas</th>
-                                                    <th>Promociones</th> 
+                                                    <th>Eventos</th>                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>`;
@@ -64,14 +60,6 @@ $(document).ready(function () {
                                                         <button class='editCargo btn btn-sm btn-primary mr-1' type='button' data-bs-toggle="modal" data-bs-target="#editar_cargo">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </button>
-                                                        <div class="custom-control custom-switch">`;
-                                                        if(objeto.estado_cargo=='Activo'){
-                                                            template += `<input type="checkbox" class="stateCargo custom-control-input" id="customSwitch${objeto.id}" checked>`;
-                                                        }else{
-                                                            template += `<input type="checkbox" class="stateCargo custom-control-input" id="customSwitch${objeto.id}">`;                                                            
-                                                        }
-                                                        template += `<label class="custom-control-label" for="customSwitch${objeto.id}"></label>
-                                                        </div>
                                                     </td>
                                                     <td>${objeto.nombre_cargo}</td>
                                                     <td>${objeto.adm}</td>
@@ -85,10 +73,6 @@ $(document).ready(function () {
                                                     <td>${objeto.esal}</td>
                                                     <td>${objeto.noticias}</td>
                                                     <td>${objeto.eventos}</td>
-                                                    <td>${objeto.reservas}</td>
-                                                    <td>${objeto.visitantes}</td>
-                                                    <td>${objeto.visitas}</td>
-                                                    <td>${objeto.promociones}</td>
                                                 </tr>`;
 
             });
@@ -124,10 +108,6 @@ $(document).ready(function () {
             $('#checkServicios2').attr('checked', false);
             $('#checkNotas2').attr('checked', false);
             $('#checkMsjContacto2').attr('checked', false);
-            $('#checkReservas2').attr('checked', false);
-            $('#checkVisitas2').attr('checked', false);
-            $('#checkDescuentos2').attr('checked', false);
-            $('#checkVisitantes2').attr('checked', false);
             if (obj.adm == 'Activo') {
                 $('#checkConfiguracion2').attr('checked', true);
             }
@@ -161,18 +141,6 @@ $(document).ready(function () {
             if (obj.eventos == 'Activo') {
                 $('#checkEventos2').attr('checked', true);
             }
-            if (obj.visitantes == 'Activo') {
-                $('#checkVisitantes2').attr('checked', true);
-            }
-            if (obj.reservas == 'Activo') {
-                $('#checkReservas2').attr('checked', true);
-            }
-            if (obj.visitas == 'Activo') {
-                $('#checkVisitas2').attr('checked', true);
-            }
-            if (obj.promociones == 'Activo') {
-                $('#checkPromociones2').attr('checked', true);
-            }
         });
     });
 
@@ -192,10 +160,6 @@ $(document).ready(function () {
         let msj_contacto='';
         let agenda='';
         let notas='';
-        let visitantes='';
-        let reservas='';
-        let visitas='';
-        let promociones='';
         if (document.getElementById('checkConfiguracion2').checked) {
             adm = 'Activo';
         }
@@ -229,20 +193,8 @@ $(document).ready(function () {
         if (document.getElementById('checkNotas2').checked) {
             notas = 'Activo';
         }
-        if (document.getElementById('checkReservas2').checked) {
-            reservas = 'Activo';
-        }
-        if (document.getElementById('checkVisitas2').checked) {
-            visitas = 'Activo';
-        }
-        if (document.getElementById('checkVisitantes2').checked) {
-            visitantes = 'Activo';
-        }
-        if (document.getElementById('checkPromociones2').checked) {
-            promociones = 'Activo';
-        }
         funcion = 'editar_cargo';
-        $.post('../Controlador/cargo_controler.php', {funcion, id, nombre_cargo, desc, cobertura, adm, sedes, servicios, galeria, esal, noticias, eventos, usuarios, msj_contacto, agenda, notas, reservas, visitas, visitantes, promociones}, (response) => {
+        $.post('../Controlador/cargo_controler.php', {funcion, id, nombre_cargo, desc, cobertura, adm, sedes, servicios, galeria, esal, noticias, eventos, usuarios, msj_contacto, agenda, notas}, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);
@@ -274,10 +226,6 @@ $(document).ready(function () {
         let msj_contacto='';
         let agenda='';
         let notas='';
-        let visitantes='';
-        let reservas='';
-        let visitas='';
-        let promociones='';
         if (document.getElementById('checkConfiguracion').checked) {
             adm = 'Activo';
         }
@@ -311,20 +259,8 @@ $(document).ready(function () {
         if (document.getElementById('checkNotas').checked) {
             notas = 'Activo';
         }
-        if (document.getElementById('checkReservas').checked) {
-            reservas = 'Activo';
-        }
-        if (document.getElementById('checkVisitas').checked) {
-            visitas = 'Activo';
-        }
-        if (document.getElementById('checkVisitantes').checked) {
-            visitantes = 'Activo';
-        }
-        if (document.getElementById('checkPromociones').checked) {
-            promociones = 'Activo';
-        }
         funcion = 'crear_cargo';
-        $.post('../Controlador/cargo_controler.php', {funcion, nombre_cargo, desc, cobertura, adm, sedes, servicios, galeria, esal, noticias, eventos, usuarios, msj_contacto, agenda, notas, reservas, visitas, visitantes, promociones}, (response) => {
+        $.post('../Controlador/cargo_controler.php', {funcion, nombre_cargo, desc, cobertura, adm, sedes, servicios, galeria, esal, noticias, eventos, usuarios, msj_contacto, agenda, notas}, (response) => {
             if (response == 'create') {
                 $('#createObj').hide('slow');
                 $('#createObj').show(1000);
@@ -338,22 +274,5 @@ $(document).ready(function () {
             }
         });
         e.preventDefault();
-    });
-
-    $(document).on('click', '.stateCargo', (e) => {
-        const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement;
-        Swal.fire({
-            title: 'Realmente desea cambiar el estado del cargo?',
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: `Actualizar`,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const id = $(elemento).attr('idCargo');
-                funcion = 'cambiar_estado';
-                $.post('../Controlador/cargo_controler.php', { id, funcion }, (response) => {
-                });
-            } 
-        })
     });
 });

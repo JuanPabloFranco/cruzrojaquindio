@@ -9,12 +9,12 @@ class Servicio
         $this->acceso = $db->pdo;
     }
 
-    function crear($nombre, $descrip, $valor)
+    function crear($nombre, $descrip)
     {
-        $sql2 = "INSERT INTO servicios(nombre_servicio, descripcion, estado_servicio, valor)                
-               values(:nombre,:descrip,'Activo',:valor)";
+        $sql2 = "INSERT INTO servicios(nombre_servicio, descripcion, estado_servicio)                
+               values(:nombre,:descrip,'Activo')";
         $query2 = $this->acceso->prepare($sql2);
-        if ($query2->execute(array(':nombre' => $nombre, ':descrip' => $descrip, ':valor' => $valor))) {
+        if ($query2->execute(array(':nombre' => $nombre, ':descrip' => $descrip))) {
             echo 'creado';
         } else {
             echo 'Error al registrar el servicio';
@@ -48,11 +48,11 @@ class Servicio
         return $this->objetos;
     }
 
-    function editar_serrvicio($id, $nombre, $descrip, $valor)
+    function editar_serrvicio($id, $nombre, $descrip)
     {
-        $sql = "UPDATE servicios SET nombre_servicio=:nombre, descripcion=:descrip, valor=:valor WHERE id=:id";
+        $sql = "UPDATE servicios SET nombre_servicio=:nombre, descripcion=:descrip WHERE id=:id";
         $query = $this->acceso->prepare($sql);
-        if ($query->execute(array(':id' => $id, ':nombre' => "$nombre", ':descrip' => "$descrip", ':valor' => "$valor"))) {
+        if ($query->execute(array(':id' => $id, ':nombre' => "$nombre", ':descrip' => "$descrip"))) {
             echo 'update';
         } else {
             echo 'Error al actualizar el servicio';

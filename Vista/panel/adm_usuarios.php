@@ -62,6 +62,55 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
                                 <label for="txtDoc2">No. Documento</label>
                                 <input type="text" class="form-control" placeholder="Ingrese el documento de identidad" id="txtDoc2" required>
                             </div>
+                            <?php
+                            if ($_SESSION['type_id'] <= 2 || ($_SESSION['id_cargo'] == 2 && $_SESSION['id_cargo'] == 3 || $_SESSION['id_cargo'] == 7)) {
+                            ?>
+                                <div class="div form-group">
+                                    <label for="txtSedeEd">Sede</label>
+                                    <select id="txtSedeEd" class="form-control" required>
+                                        <?php
+                                        $sqlSedes2 = "SELECT id, nombre_sede FROM sedes";
+                                        $resSede2 = ejecutarSQL::consultar($sqlSedes2);
+                                        while ($sede2 = mysqli_fetch_array($resSede2)) {
+                                            echo '<option value="' . $sede2['id'] . '">' . $sede2['nombre_sede'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            <?php
+                            } else {
+                            ?>
+                                <div class="div form-group">
+                                    <label for="txtSedeEd">Sede</label>
+                                    <input type="text" class="form-control" readonly value="<?php echo $_SESSION['name_sede']; ?>">
+                                    <input type="" class="form-control" id="txtSedeEd" value="<?php echo $_SESSION['id_sede']; ?>">
+                                </div>
+                            <?php
+                            }
+                            ?>
+                            <div class="div form-group">
+                                <label for="selCargo">Cargo</label>
+                                <select id="selCargoEd" class="form-control" required>
+                                    <?php
+                                    if ($_SESSION['id_cargo'] == 2) {
+                                        $sqlCargo = "SELECT id, nombre_cargo FROM cargo WHERE id<>2";
+                                    }
+                                    if ($_SESSION['id_cargo'] == 3) {
+                                        $sqlCargo = "SELECT id, nombre_cargo FROM cargo WHERE id<>2 AND id<>3";
+                                    }
+                                    if ($_SESSION['id_cargo'] == 8) {
+                                        $sqlCargo = "SELECT id, nombre_cargo FROM cargo WHERE id=1 OR (id>=9 AND id<=13)";
+                                    }
+                                    if ($_SESSION['type_id'] <= 2) {
+                                        $sqlCargo = "SELECT id, nombre_cargo FROM cargo";
+                                    }
+                                    $resCarg = ejecutarSQL::consultar($sqlCargo);
+                                    while ($cargo = mysqli_fetch_array($resCarg)) {
+                                        echo '<option value="' . $cargo['id'] . '">' . $cargo['nombre_cargo'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                         <div class="alert alert-success text-center" id="updateCc" style="display: none;">
                             <span><i class='fas fa-check m-1'> Usuario Actualizado</i></span>
@@ -99,44 +148,51 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
                                     <label for="txtDoc">No. Documento</label>
                                     <input type="text" class="form-control" placeholder="Ingrese el documento de identidad" id="txtDoc" required>
                                 </div>
-                                <div class="div form-group">
-                                    <label for="txtTelefono">Teléfono</label>
-                                    <input type="text" class="form-control" placeholder="Ingrese el teléfono del visitante" id="txtTelefono" required>
-                                </div>
-                                <div class="div form-group">
-                                    <label for="txtEmail">Email</label>
-                                    <input type="email" class="form-control" placeholder="Ingrese el documento de identidad" id="txtEmail" required>
-                                </div>
-                                <div class="div form-group">
-                                    <label for="selNacionalidad">Nacionalidad</label>
-                                    <select name="" id="selNacionalidad" class="form-control" style="width: 100%;" onchange="validarNacionalidad(this.value);">
-                                        <option value="">Seleccione una opción</option>
-                                        <?php
-                                        $sqlNacionalidades = "SELECT id, PAIS_NAC, GENTILICIO_NAC FROM nacionalidad ORDER BY FIELD(PAIS_NAC,'Colombia')";
-                                        $resNac = ejecutarSQL::consultar($sqlNacionalidades);
-                                        while ($nacionalidad = mysqli_fetch_array($resNac)) {
-                                            if ($nacionalidad['id'] == 43) {
-                                                echo '<option value="' . $nacionalidad['id'] . '" selected>' . $nacionalidad['GENTILICIO_NAC'] . '  (' . $nacionalidad['PAIS_NAC'] . ')</option>';
-                                            } else {
-                                                echo '<option value="' . $nacionalidad['id'] . '">' . $nacionalidad['GENTILICIO_NAC'] . '  (' . $nacionalidad['PAIS_NAC'] . ')</option>';
+                                <?php
+                                if ($_SESSION['type_id'] <= 2 || ($_SESSION['id_cargo'] == 2 && $_SESSION['id_cargo'] == 3 || $_SESSION['id_cargo'] == 7)) {
+                                ?>
+                                    <div class="div form-group">
+                                        <label for="txtSede">Sede</label>
+                                        <select id="txtSede" class="form-control" required>
+                                            <?php
+                                            $sqlSedes = "SELECT id, nombre_sede FROM sedes";
+                                            $resSede = ejecutarSQL::consultar($sqlSedes);
+                                            while ($sedeCrear = mysqli_fetch_array($resSede)) {
+                                                echo '<option value="' . $sedeCrear['id'] . '">' . $sedeCrear['nombre_sede'] . '</option>';
                                             }
+                                            ?>
+                                        </select>
+                                    </div>
+                                <?php
+                                } else {
+                                ?>
+                                    <div class="div form-group">
+                                        <label for="txtSede">Sede</label>
+                                        <input type="text" class="form-control" readonly value="<?php echo $_SESSION['name_sede']; ?>">
+                                        <input type="hidden" class="form-control" id="txtSede" value="<?php echo $_SESSION['id_sede']; ?>">
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                                <div class="div form-group">
+                                    <label for="selCargo">Cargo</label>
+                                    <select id="selCargo" class="form-control" required>
+                                        <?php
+                                        if ($_SESSION['id_cargo'] == 2) {
+                                            $sqlCargo = "SELECT id, nombre_cargo FROM cargo WHERE id<>2";
                                         }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="div form-group" id="divMunicipio">
-                                    <label for="selMunicipio">Municipio de residencia</label>
-                                    <select name="" id="selMunicipio" class="form-control" style="width: 100%;">
-                                        <option value="">Seleccione una opción</option>
-                                        <?php
-                                        $sqlMunicipios = "SELECT M.id, M.nombre AS municipio, D.nombre AS departamento  FROM municipios M JOIN departamentos D ON M.departamento_id=D.id ORDER BY D.nombre ASC";
-                                        $resMunicipio = ejecutarSQL::consultar($sqlMunicipios);
-                                        while ($municipio = mysqli_fetch_array($resMunicipio)) {
-                                            if ($municipio['id'] == 825) {
-                                                echo '<option value="' . $municipio['id'] . '" selected>' . $municipio['municipio'] . '  (' . $municipio['departamento'] . ')</option>';
-                                            } else {
-                                                echo '<option value="' . $municipio['id'] . '">' . $municipio['municipio'] . '  (' . $municipio['departamento'] . ')</option>';
-                                            }
+                                        if ($_SESSION['id_cargo'] == 3) {
+                                            $sqlCargo = "SELECT id, nombre_cargo FROM cargo WHERE id<>2 AND id<>3";
+                                        }
+                                        if ($_SESSION['id_cargo'] == 8) {
+                                            $sqlCargo = "SELECT id, nombre_cargo FROM cargo WHERE id=1 OR (id>=9 AND id<=13)";
+                                        }
+                                        if ($_SESSION['type_id'] <= 2) {
+                                            $sqlCargo = "SELECT id, nombre_cargo FROM cargo";
+                                        }
+                                        $resCarg = ejecutarSQL::consultar($sqlCargo);
+                                        while ($cargo = mysqli_fetch_array($resCarg)) {
+                                            echo '<option value="' . $cargo['id'] . '">' . $cargo['nombre_cargo'] . '</option>';
                                         }
                                         ?>
                                     </select>
@@ -212,18 +268,6 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
             </div>
         </section>
     </div>
-    <script>
-        $(document).ready(function() {
-            $('#selNacionalidad').select2({
-                dropdownParent: $('#crearUsuario')
-            });
-        });
-        $(document).ready(function() {
-            $('#selMunicipio').select2({
-                dropdownParent: $('#crearUsuario')
-            });
-        });
-    </script>
     <!-- /.content-wrapper -->
 <?php
     include_once '../Vista/layouts/footer.php';

@@ -3,7 +3,7 @@ include_once '../Modelo/Usuario.php';
 session_start();
 
 if (!empty($_SESSION['type_id'])) {
-    header('location: ../Vista/adm_panel.php');
+    header('location: ../Vista/panel/adm_panel.php');
 } else {
     $user = $_POST['user'];
     $pass = md5($_POST['pass']);
@@ -21,12 +21,9 @@ if (!empty($_SESSION['type_id'])) {
                 $_SESSION['id_cargo'] = $usuario->objetos[0]->id_cargo;
                 $_SESSION['usuario'] = $usuario->objetos[0]->usuario;
                 //permisos
+                // $_SESSION['permisos'][0]->adm)
                 $_SESSION['permisos'] = $usuario->permisosCargo($usuario->objetos[0]->id);
-                if($_SESSION['type_user']<=3){
-                    header('location: ../Vista/adm_panel.php');                    
-                }else{
-                    header('location: ../index.php');
-                }
+                header('location: ../Vista/panel/adm_panel.php');
             } else {
                 $msj = 'El Voluntario se encuentra inactivo';
                 header('location: ../login.php?msj=' . $msj);

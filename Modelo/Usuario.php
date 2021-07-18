@@ -107,9 +107,14 @@ class Usuario
      function buscar_datos_adm()
      {
           $cargo = $_POST['id_cargo'];
+          $sede = $_POST['id_sede'];
           $tipo = $_POST['tipo_usuario'];
           if (!empty($_POST['consulta'])) {
-               $sql = "SELECT U.id, U.nombre_completo, U.fecha_nac, U.avatar, U.cel_usuario, U.tel_usuario, U.dir_usuario, U.email_usuario, T.nombre_tipo, C.nombre_cargo, R.nombre_sede, U.twitter, U.facebook, U.instagram, U.estado, U.id_tipo_usuario, U.genero, N.GENTILICIO_NAC AS nacionalidad, M.nombre AS municipio, D.nombre AS departamento FROM usuario U JOIN sedes R ON U.id_sede=R.id JOIN cargo C ON U.id_cargo=C.id JOIN tipo_usuario T ON U.id_tipo_usuario=T.id JOIN nacionalidad N ON U.id_nacionalidad=N.id JOIN municipios M ON U.id_municipio=M.id JOIN departamentos D ON M.departamento_id=D.id WHERE U.id<>1 AND (U.nombre_completo LIKE :consulta OR U.cel_usuario LIKE :consulta OR D.nombre LIKE :consulta OR M.nombre LIKE :consulta) ORDER BY U.nombre_completo";
+               if ($tipo <= 2 || ($cargo <> 1 && ($cargo >= 1 && $cargo <= 7))) {
+                    $sql = "SELECT U.id, U.nombre_completo, U.fecha_nac, U.avatar, U.cel_usuario, U.tel_usuario, U.dir_usuario, U.email_usuario, T.nombre_tipo, C.nombre_cargo, R.nombre_sede, U.twitter, U.facebook, U.instagram, U.estado, U.id_tipo_usuario, U.genero FROM usuario U JOIN sedes R ON U.id_sede=R.id JOIN cargo C ON U.id_cargo=C.id JOIN tipo_usuario T ON U.id_tipo_usuario=T.id  WHERE U.id<>1 AND (U.nombre_completo LIKE :consulta OR U.cel_usuario LIKE :consulta OR R.nombre_sede LIKE :consulta) ORDER BY U.nombre_completo";
+               } else {
+                    $sql = "SELECT U.id, U.nombre_completo, U.fecha_nac, U.avatar, U.cel_usuario, U.tel_usuario, U.dir_usuario, U.email_usuario, T.nombre_tipo, C.nombre_cargo, R.nombre_sede, U.twitter, U.facebook, U.instagram, U.estado, U.id_tipo_usuario, U.genero FROM usuario U JOIN sedes R ON U.id_sede=R.id JOIN cargo C ON U.id_cargo=C.id JOIN tipo_usuario T ON U.id_tipo_usuario=T.id  WHERE U.id<>1 AND U.id_sede=$sede AND (U.nombre_completo LIKE :consulta OR U.cel_usuario LIKE :consulta OR R.nombre_sede LIKE :consulta) ORDER BY U.nombre_completo";
+               }
 
                $consulta = $_POST['consulta'];
 
@@ -118,7 +123,11 @@ class Usuario
                $this->objetos = $query->fetchall();
                return $this->objetos;
           } else {
-               $sql = "SELECT U.id, U.nombre_completo, U.fecha_nac, U.avatar, U.cel_usuario, U.tel_usuario, U.dir_usuario, U.email_usuario, T.nombre_tipo, C.nombre_cargo, R.nombre_sede, U.twitter, U.facebook, U.instagram, U.estado, U.id_tipo_usuario, U.genero, N.GENTILICIO_NAC AS nacionalidad, M.nombre AS municipio, D.nombre AS departamento FROM usuario U JOIN sedes R ON U.id_sede=R.id JOIN cargo C ON U.id_cargo=C.id JOIN tipo_usuario T ON U.id_tipo_usuario=T.id JOIN nacionalidad N ON U.id_nacionalidad=N.id JOIN municipios M ON U.id_municipio=M.id JOIN departamentos D ON M.departamento_id=D.id WHERE U.nombre_completo NOT LIKE '' AND U.id<>1 ORDER BY U.nombre_completo ";
+               if ($tipo <= 2 || ($cargo <> 1 && ($cargo >= 1 && $cargo <= 7))) {
+                    $sql = "SELECT U.id, U.nombre_completo, U.fecha_nac, U.avatar, U.cel_usuario, U.tel_usuario, U.dir_usuario, U.email_usuario, T.nombre_tipo, C.nombre_cargo, R.nombre_sede, U.twitter, U.facebook, U.instagram, U.estado, U.id_tipo_usuario, U.genero FROM usuario U JOIN sedes R ON U.id_sede=R.id JOIN cargo C ON U.id_cargo=C.id JOIN tipo_usuario T ON U.id_tipo_usuario=T.id WHERE U.nombre_completo NOT LIKE '' AND U.id<>1 ORDER BY U.nombre_completo ";
+               } else {
+                    $sql = "SELECT U.id, U.nombre_completo, U.fecha_nac, U.avatar, U.cel_usuario, U.tel_usuario, U.dir_usuario, U.email_usuario, T.nombre_tipo, C.nombre_cargo, R.nombre_sede, U.twitter, U.facebook, U.instagram, U.estado, U.id_tipo_usuario, U.genero FROM usuario U JOIN sedes R ON U.id_sede=R.id JOIN cargo C ON U.id_cargo=C.id JOIN tipo_usuario T ON U.id_tipo_usuario=T.id WHERE U.id<>1 AND U.id_sede=$sede AND (U.nombre_completo NOT LIKE '')  ORDER BY U.nombre_completo ";
+               }
 
                $query = $this->acceso->prepare($sql);
                $query->execute();
@@ -127,13 +136,8 @@ class Usuario
           }
      }
 
-     function crear_usuario($nombre, $cel_usuario, $documento, $email_usuario, $id_cargo, $id_tipo_usuario, $avatar, $pass, $id_nacionalidad, $id_municipio, $create_at)
+     function crear_usuario($nombre, $documento, $id_cargo, $id_sede, $tipo, $avatar, $pass)
      {
-          if($id_tipo_usuario==4){
-               $usuario = $email_usuario;
-          }else{
-               $usuario = $documento;
-          }
           $sql = "SELECT id FROM usuario WHERE doc_id=:documento";
           $query = $this->acceso->prepare($sql);
           $query->execute(array(':documento' => $documento));
@@ -141,10 +145,10 @@ class Usuario
           if (!empty($this->objetos)) {
                echo 'Ya existe un usuario con este número de documento';
           } else {
-               $sql2 = "INSERT INTO usuario(nombre_completo, cel_usuario, fecha_nac, doc_id, email_usuario, id_cargo, id_sede, id_tipo_usuario, avatar, estado, usuario, pass, id_nacionalidad, id_municipio, create_at)                
-               values(:nombre_completo,:cel_usuario,'0000-00-00',:doc_id,:email_usuario,:id_cargo,1,:id_tipo_usuario,:avatar,'Activo',:usuario,:pass,:id_nacionalidad,:id_municipio, :create_at)";
+               $sql2 = "INSERT INTO usuario(nombre_completo, cel_usuario, fecha_nac, doc_id, email_usuario, id_cargo, id_sede, id_tipo_usuario, avatar, estado, usuario, pass)                
+               values(:nombre,'','0000-00-00',:documento,'',:id_cargo,:id_sede,:tipo,:avatar,'Activo',:documento,:pass)";
                $query2 = $this->acceso->prepare($sql2);
-               $query2->execute(array(':nombre_completo' => $nombre, ':cel_usuario' => $cel_usuario, ':doc_id' => $documento, ':email_usuario' => $email_usuario, ':id_cargo' => $id_cargo, ':id_cargo' => $id_cargo, ':id_tipo_usuario' => $id_tipo_usuario, ':avatar' => $avatar, ':usuario' => $usuario, ':pass' => $pass,  ':id_nacionalidad' => $id_nacionalidad, ':id_municipio' => $id_municipio, ':create_at' => $create_at));
+               $query2->execute(array(':nombre' => $nombre, ':documento' => $documento, ':id_cargo' => $id_cargo, ':id_cargo' => $id_cargo, ':id_sede' => $id_sede, ':tipo' => $tipo, ':avatar' => $avatar, ':pass' => $pass));
                echo 'agregado';
           }
      }
@@ -630,37 +634,10 @@ class Usuario
 
      function permisosCargo($id)
      {
-          $sql = "SELECT C.cobertura, C.adm, C.sedes, C.servicios, C.galeria, C.esal, C.noticias, C.eventos, C.usuarios, C.msj_contacto, C.agenda, C.notas, C.reservas, C.visitas, C.visitantes, C.promociones FROM usuario U JOIN cargo C ON U.id_cargo=C.id WHERE U.id=:id";
+          $sql = "SELECT C.cobertura, C.adm, C.sedes, C.servicios, C.galeria, C.esal, C.noticias, C.eventos, C.usuarios, C.msj_contacto, C.agenda, C.notas FROM usuario U JOIN cargo C ON U.id_cargo=C.id WHERE U.id=:id";
           $query = $this->acceso->prepare($sql);
           $query->execute(array(':id' => $id));
           $this->permisos = $query->fetchall();
           return $this->permisos;
      }     
-
-     function buscar_visitantes()
-     {
-          if (!empty($_POST['consulta'])) {
-               $sql = "SELECT U.id, U.nombre_completo, U.avatar, U.cel_usuario, U.email_usuario, T.nombre_tipo, U.estado, U.id_tipo_usuario, N.GENTILICIO_NAC AS nacionalidad, M.nombre AS municipio, D.nombre AS departamento FROM usuario U JOIN tipo_usuario T ON U.id_tipo_usuario=T.id JOIN nacionalidad N ON U.id_nacionalidad=N.id JOIN municipios M ON U.id_municipio=M.id JOIN departamentos D ON M.departamento_id=D.id  WHERE U.id<>1 AND (U.nombre_completo LIKE :consulta OR U.cel_usuario LIKE :consulta OR D.nombre LIKE :consulta OR M.nombre LIKE :consulta) ORDER BY U.nombre_completo";
-               $consulta = $_POST['consulta'];
-               $query = $this->acceso->prepare($sql);
-               $query->execute(array(':consulta' => "%$consulta%"));
-               $this->objetos = $query->fetchall();
-               return $this->objetos;
-          } else {
-               $sql = "SELECT U.id, U.nombre_completo, U.avatar, U.cel_usuario, U.email_usuario, T.nombre_tipo, U.estado, U.id_tipo_usuario, N.GENTILICIO_NAC AS nacionalidad, M.nombre AS municipio, D.nombre AS departamento FROM usuario U JOIN tipo_usuario T ON U.id_tipo_usuario=T.id JOIN nacionalidad N ON U.id_nacionalidad=N.id JOIN municipios M ON U.id_municipio=M.id JOIN departamentos D ON M.departamento_id=D.id WHERE U.nombre_completo NOT LIKE '' ORDER BY U.nombre_completo ";
-               $query = $this->acceso->prepare($sql);
-               $query->execute();
-               $this->objetos = $query->fetchall();
-               return $this->objetos;
-          }
-     }
-
-     function buscar_por_documento($doc_id)
-     {
-          $sql = "SELECT * FROM usuario WHERE doc_id=:doc_id AND id<>1";
-          $query = $this->acceso->prepare($sql);
-          $query->execute(array(':doc_id' => $doc_id));
-          $this->objetos = $query->fetchall();
-          return $this->objetos;
-     }
 }

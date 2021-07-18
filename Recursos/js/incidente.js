@@ -43,6 +43,7 @@ $(document).ready(function () {
             funcion, id, id_region, fecha_creacion, fecha, hora, evento, tipo, departamento, municipio, direccion, cant_personal, personal,
             afectado, heridos, desaparecidos, muertos, lesionados, traslado, quien_traslado, viviendas_averiadas, viviendas_destruidas, familias_afectadas, otros, observaciones
         }, (response) => {
+            console.log(response);
             if (response == 'creado') {
                 $('#divCreate').hide('slow');
                 $('#divCreate').show(1000);

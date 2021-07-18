@@ -464,7 +464,7 @@ if (isset($_SESSION['type_id'])) {
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card card-blue card-tabs">
+                        <div class="card card-purple card-tabs">
                             <div class="card-header p-0 pt-1">
                                 <ul class="nav nav-tabs">
                                     <li class="nav-item"><a href="#adicional" class="nav-link active" data-bs-toggle='tab'>Información Adicional</a></li>

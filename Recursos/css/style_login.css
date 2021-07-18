@@ -20,20 +20,32 @@ body {
     overflow: hidden;
 }
 
+.wave {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+}
+
 .contenedor {
-    text-align: center;;
     width: 100vw;
     height: 100vh;
-    margin-left: 33%;
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 7rem;
     padding: 0 2rem;
-    align-items: center;
 }
 
 h3 {
-    color: #0842ad;
+    color: #320a48;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.img {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .contenido-login {
@@ -45,6 +57,7 @@ h3 {
 
 .img img {
     width: 500px;
+    border-radius: 100px 20px 100px 20px;
 }
 
 form {
@@ -75,6 +88,7 @@ form {
 
 .contenido-login .input-div.dni {
     margin-top: 0;
+    padding-top: 40px;
 }
 
 .i {
@@ -115,7 +129,7 @@ form {
     bottom: -2px;
     width: 0%;
     height: 2px;
-    background-color: #0842ad;
+    background-color: blueviolet;
     transition: .4s;
 }
 
@@ -133,7 +147,7 @@ form {
 }
 
 .input-div.focus>.i>i {
-    color: #0842ad;
+    color: blueviolet;
 }
 
 .input-div>div>input {
@@ -174,7 +188,7 @@ a:hover {
     border-radius: 25px;
     outline: none;
     border: none;
-    background-image: linear-gradient(to right, #0842ad, #0077ff, #fff);
+    background-image: linear-gradient(to right, #680197, #00ffbf, #c046f8);
     background-size: 200%;
     font-size: 1.2rem;
     color: #fff;
@@ -187,4 +201,50 @@ a:hover {
 
 .btn:hover {
     background-position: right;
+}
+
+
+/*responsive para tablets y celulares*/
+
+
+/*tablets*/
+
+@media screen and (max-width: 1050px) {
+    .contenedor {
+        grid-gap: 5rem;
+    }
+}
+
+
+/*tablet mas pequena*/
+
+@media screen and (max-width: 1000px) {
+    form {
+        width: 290px;
+    }
+    .contenido-login h2 {
+        font-size: 2.4rem;
+        margin: 8px 0;
+    }
+    .img img {
+        width: 400px;
+    }
+}
+
+
+/*celulares*/
+
+@media screen and (max-width: 900px) {
+    .contenedor {
+        grid-template-columns: 1fr;
+    }
+    .img {
+        display: none;
+    }
+    .wave {
+        display: none;
+    }
+    .contenido-login {
+        justify-content: center;
+    }
 }

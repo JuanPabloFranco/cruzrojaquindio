@@ -109,36 +109,8 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2)) {
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="icheck-success d-inline">
-                                    <input type="checkbox" id="checkReservas2">
-                                    <label for="checkReservas2">Reservas</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="icheck-success d-inline">
-                                    <input type="checkbox" id="checkVisitas2">
-                                    <label for="checkVisitas2">Visitas</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="icheck-success d-inline">
                                     <input type="checkbox" id="checkEventos2">
                                     <label for="checkEventos2">Eventos</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="icheck-success d-inline">
-                                    <input type="checkbox" id="checkVisitantes2">
-                                    <label for="checkVisitantes2">Visitantes</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="icheck-success d-inline">
-                                    <input type="checkbox" id="checkPromociones2">
-                                    <label for="checkPromociones2">Promociones</label>
                                 </div>
                             </div>
                         </div>
@@ -255,36 +227,8 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2)) {
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="icheck-success d-inline">
-                                    <input type="checkbox" id="checkReservas">
-                                    <label for="checkReservas">Reservas</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="icheck-success d-inline">
-                                    <input type="checkbox" id="checkVisitas">
-                                    <label for="checkVisitas">Visitas</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="icheck-success d-inline">
                                     <input type="checkbox" id="checkEventos">
                                     <label for="checkEventos">Eventos</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="icheck-success d-inline">
-                                    <input type="checkbox" id="checkVisitantes">
-                                    <label for="checkVisitantes">Visitantes</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="icheck-success d-inline">
-                                    <input type="checkbox" id="checkPromociones">
-                                    <label for="checkPromociones">Promociones</label>
                                 </div>
                             </div>
                         </div>

@@ -10,7 +10,6 @@ $(document).ready(function () {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
-        
     }
 
     function cargarInformacion() {

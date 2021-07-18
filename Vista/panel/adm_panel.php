@@ -1,15 +1,15 @@
 <?php
 session_start();
 if (isset($_SESSION['type_id'])) {
-    include_once '../Vista/layouts/header.php';
-    include_once '../Conexion/consulSQL.php';
+    include_once '../../Vista/layouts/header.php';
+    include_once '../../Conexion/consulSQL.php';
     $fecha = date("Y-m-d");;
 ?>
     <title>Panel</title>
     <?php
-    include_once '../Vista/layouts/nav.php';
+    include_once '../../Vista/layouts/nav.php';
     ?>
-    <script src="../Recursos/js/inicio.js"></script>
+    <script src="../../Recursos/js/inicio.js"></script>
     <input type="hidden" id="id_usuario" value="<?php echo $_SESSION['id_user']; ?>">
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -38,7 +38,7 @@ if (isset($_SESSION['type_id'])) {
                 ?>
                         <div class="card col-sm-4">
                             <div class="card-header notiHeader">
-                                <img class="img-circle elevation-2 float-left mr-2" alt="User Image" src="../Recursos/img/logo.png" style="width: 25px;">
+                                <img class="img-circle elevation-2 float-left mr-2" alt="User Image" src="../../Recursos/img/logo.png" style="width: 25px;">
                                 <h3 class="card-title"><?php echo $nota['tipo_nota']; ?></h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -48,12 +48,12 @@ if (isset($_SESSION['type_id'])) {
                                 </div>
                             </div>
                             <div class="card-body">
-                                <img class="centrado" src="../Recursos/img/<?php echo $nota['tipo_nota']; ?>.png" class="text-center" style="width: 50%;">
+                                <img class="centrado" src="../../Recursos/img/<?php echo $nota['tipo_nota']; ?>.png" class="text-center" style="width: 50%;">
                                 <?php
                                 if ($nota['imagen'] <> "") {
                                 ?>
                                     <div>
-                                        <img src="../Recursos/img/notas/<?php echo $nota['imagen']; ?>" style="width: 100%;">
+                                        <img src="../../Recursos/img/notas/<?php echo $nota['imagen']; ?>" style="width: 100%;">
                                     </div>
                                 <?php
                                 }
@@ -79,8 +79,8 @@ if (isset($_SESSION['type_id'])) {
     </div>
     <!-- /.content-wrapper -->
 <?php
-    include_once '../Vista/layouts/footer.php';
+    include_once '../../Vista/layouts/footer.php';
 } else {
-    header('Location: ../login.php');
+    header('Location: ../../login.php');
 }
 ?>

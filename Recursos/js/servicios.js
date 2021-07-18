@@ -17,9 +17,8 @@ $(document).ready(function() {
         e.preventDefault();
         let nombre = $('#txtNombreServ').val();
         let descrip = $('#txtDescServ').val();
-        let valor = $('#txtValorServ').val();
         funcion = 'crear_servicio';
-        $.post('../Controlador/servicio_controler.php', { funcion, nombre, descrip, valor }, (response) => {
+        $.post('../Controlador/servicio_controler.php', { funcion, nombre, descrip }, (response) => {
             if (response == 'creado') {
                 $('#divCreate').hide('slow');
                 $('#divCreate').show(1000);
@@ -56,12 +55,11 @@ $(document).ready(function() {
                                         <table class="table table-bordered center-all">
                                             <thead notiHeader>                  
                                                 <tr>
-                                                    <th>#</th>                                                    
-                                                    <th>Estado</th>
-                                                    <th >Nombre</th>
-                                                    <th >Valor</th>
-                                                    <th >Descripción</th>
-                                                    <th >Acción</th>
+                                                    <th style="width: 2px">#</th>                                                    
+                                                    <th style="width: 8px">Estado</th>
+                                                    <th style="width: 20px">Nombre</th>
+                                                    <th style="width: 60x">Descripción</th>
+                                                    <th style="width: 10px">Acción</th>
                                                 </tr>
                                             </thead>
                                             <tbody>`;
@@ -69,12 +67,11 @@ $(document).ready(function() {
             objetos.forEach(objeto => {
                 num += 1;
                 template += `                   <tr idServicio=${objeto.id}>
-                                                    <td >${num}</td>
-                                                    <td >${objeto.estado_servicio}</td>
-                                                    <td >${objeto.nombre_servicio}</td>
-                                                    <td >$${objeto.valor}</td>
-                                                    <td >${objeto.descripcion}</td>
-                                                    <td >
+                                                    <td style="width: 2px">${num}</td>
+                                                    <td style="width: 8px">${objeto.estado_servicio}</td>
+                                                    <td style="width: 20px">${objeto.nombre_servicio}</td>
+                                                    <td style="width: 60px">${objeto.descripcion}</td>
+                                                    <td style="width: 10px">
                                                         <button class='editServicio btn btn-sm btn-primary mr-1' type='button' data-bs-toggle="modal" data-bs-target="#ModalEditar_servicio">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </button>
@@ -97,7 +94,8 @@ $(document).ready(function() {
             template += `                   </tbody>
                                         </table>
                                     </div> 
-                                </div>`;
+                                </div>
+            `
             $('#busquedaServicio').html(template);
         });
     }
@@ -111,7 +109,6 @@ $(document).ready(function() {
             const obj = JSON.parse(response);
             $('#txtNombreServ2').val(obj.nombre_servicio);
             $('#txtDescServ2').val(obj.descripcion);
-            $('#txtValorServ2').val(obj.valor);
         });
     });
 
@@ -127,9 +124,8 @@ $(document).ready(function() {
         let id = $('#txtId_ServicioEd').val();
         let nombre = $('#txtNombreServ2').val();
         let desc = $('#txtDescServ2').val();
-        let valor = $('#txtValorServ2').val();
         funcion = 'editar_servicio';
-        $.post('../Controlador/servicio_controler.php', { funcion, id, nombre, desc, valor }, (response) => {
+        $.post('../Controlador/servicio_controler.php', { funcion, id, nombre, desc }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);

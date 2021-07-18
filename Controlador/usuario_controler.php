@@ -110,6 +110,7 @@ if ($_POST['funcion'] == 'buscar_gestion_usuario') {
             'edad' => $edad_years,
             'fecha_nac' => $objeto->fecha_nac,
             'cel_usuario' => $objeto->cel_usuario,
+            'tel_usuario' => $objeto->tel_usuario,
             'dir_usuario' => $objeto->dir_usuario,
             'genero' => $objeto->genero,
             'email_usuario' => $objeto->email_usuario,
@@ -117,13 +118,11 @@ if ($_POST['funcion'] == 'buscar_gestion_usuario') {
             'tipo_usuario' => $objeto->id_tipo_usuario,
             'avatar' => '../Recursos/img/avatars/' . $objeto->avatar,
             'nombre_cargo' => $objeto->nombre_cargo,
+            'nombre_sede' => $objeto->nombre_sede,
             'twitter' => $objeto->twitter,
             'facebook' => $objeto->facebook,
             'instagram' => $objeto->instagram,
             'estado' => $objeto->estado,
-            'nacionalidad' => $objeto->nacionalidad,
-            'municipio' => $objeto->municipio,
-            'departamento' => $objeto->departamento
         );
     }
     $jsonstring = json_encode($json);
@@ -131,18 +130,13 @@ if ($_POST['funcion'] == 'buscar_gestion_usuario') {
 }
 if ($_POST['funcion'] == 'crear_usuario') {
     $nombre = $_POST['nombre'];
-    $cel_usuario = $_POST['cel_usuario'];
     $documento = $_POST['documento'];
-    $email_usuario = $_POST['email_usuario'];
     $id_cargo = $_POST['id_cargo'];
-    $id_tipo_usuario = $_POST['id_tipo_usuario'];
+    $id_sede = $_POST['id_sede'];
     $avatar = 'avatar_default.png';
+    $tipo = 3;
     $pass = md5($documento);
-    $id_nacionalidad = $_POST['id_nacionalidad'];
-    $id_municipio = $_POST['id_municipio'];
-    date_default_timezone_set('America/Bogota');
-    $create_at = date('m/d/Y h:i:s', time());
-    $usuario->crear_usuario($nombre, $cel_usuario, $documento, $email_usuario, $id_cargo, $id_tipo_usuario, $avatar, $pass, $id_nacionalidad, $id_municipio, $create_at);
+    $usuario->crear_usuario($nombre, $documento, $id_cargo, $id_sede, $tipo, $avatar, $pass);
 }
 
 if ($_POST['funcion'] == 'ascender') {
@@ -272,28 +266,9 @@ if ($_POST['funcion'] == 'update_sociodemografica') {
     $licencia_conduccion = $_POST['licencia_conduccion'];
     $licencia_descr = $_POST['licencia_descr'];
     $act_tiempo_libre = $_POST['act_tiempo_libre'];
-    $usuario->update_sociodemografica(
-        $id,
-        $estrato,
-        $estado_civil,
-        $grupo_etnico,
-        $personas_cargo,
-        $cabeza_familia,
-        $hijos,
-        $fuma,
-        $fuma_frecuencia,
-        $bebidas,
-        $bebe_frecuencia,
-        $deporte,
-        $deporte_frecuencia,
-        $talla_camisa,
-        $talla_pantalon,
-        $talla_calzado,
-        $tipo_vivienda,
-        $licencia_conduccion,
-        $licencia_descr,
-        $act_tiempo_libre
-    );
+    $usuario->update_sociodemografica($id, $estrato, $estado_civil, $grupo_etnico, $personas_cargo, $cabeza_familia, 
+    $hijos, $fuma, $fuma_frecuencia, $bebidas, $bebe_frecuencia, $deporte, $deporte_frecuencia, 
+    $talla_camisa, $talla_pantalon, $talla_calzado, $tipo_vivienda, $licencia_conduccion, $licencia_descr, $act_tiempo_libre);
 }
 
 if ($_POST['funcion'] == 'crear_estudio') {
@@ -668,43 +643,3 @@ if ($_POST['funcion'] == 'estadisticas') {
     echo $jsonstring;
 }
 
-if ($_POST['funcion'] == 'buscar_visitantes') {
-    $json = array();
-    $fecha_actual = new DateTime();
-    $usuario->buscar_visitantes();
-    foreach ($usuario->objetos as $objeto) {
-        $json[] = array(
-            'id' => $objeto->id,
-            'nombre_completo' => $objeto->nombre_completo,
-            'cel_usuario' => $objeto->cel_usuario,
-            'email_usuario' => $objeto->email_usuario,
-            'nombre_tipo' => $objeto->nombre_tipo,
-            'tipo_usuario' => $objeto->id_tipo_usuario,
-            'avatar' => '../Recursos/img/avatars/' . $objeto->avatar,
-            'estado' => $objeto->estado,
-            'nacionalidad' => $objeto->nacionalidad,
-            'departamento' => $objeto->departamento,
-            'municipio' => $objeto->municipio
-        );
-    }
-    $jsonstring = json_encode($json);
-    echo $jsonstring;
-}
-
-if ($_POST['funcion'] == 'buscar_visitante') {
-    $json = array();
-    $documento = $_POST['documento'];
-    $usuario->buscar_por_documento($documento);
-    foreach ($usuario->objetos as $objeto) {
-        $json[] = array(
-            'nombre_completo' => $objeto->nombre_completo,
-            'doc_id' => $objeto->doc_id,
-            'cel_usuario' => $objeto->cel_usuario,
-            'email_usuario' => $objeto->email_usuario,
-            'id_nacionalidad' => $objeto->id_nacionalidad,
-            'id_municipio' => $objeto->id_municipio
-        );
-    }
-    $jsonstring = json_encode($json[0]);
-    echo $jsonstring;
-}

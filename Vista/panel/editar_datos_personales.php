@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['type_id']) && $_SESSION['type_id'] <= 4) {
+if (isset($_SESSION['type_id']) && $_SESSION['type_id'] <= 3) {
     include_once '../Vista/layouts/header.php'
 ?>
     <title>Adm | Editar Usuario</title>
@@ -119,11 +119,11 @@ if (isset($_SESSION['type_id']) && $_SESSION['type_id'] <= 4) {
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#changeAvatar" class="btn btn-primary btn-sm mt-1">Cambiar Avatar</button>
                                     </div>
                                     <input type="hidden" id="id_usuario" value="<?php echo $_SESSION['id_user']; ?>">
-                                    <h3 class="profile-username text-center" ><?php echo $_SESSION['name_user']; ?></h3>
+                                    <h3 class="profile-username text-center" style="color: #320a48;"><?php echo $_SESSION['name_user']; ?></h3>
                                     <p class="text-muted"><?php echo $_SESSION['type_user']; ?></p>
                                     <ul class="list-group list-group-unbordered mb-3">
-                                        <li class="list-group-item"><b >Edad</b><a class="float-right" id="edad_usuario"></a></li>
-                                        <li class="list-group-item"><b >Documento</b><a class="float-right" id="doc_usuario"></a></li>
+                                        <li class="list-group-item"><b style="color: #320a48;">Edad</b><a class="float-right" id="edad_usuario"></a></li>
+                                        <li class="list-group-item"><b style="color: #320a48;">Documento</b><a class="float-right" id="doc_usuario"></a></li>
                                     </ul>
                                     <button data-bs-toggle="modal" data-bs-target="#changePass" type="button" class='btn btn-block btn-outline-warning btn-sm'>Cambiar Login</button>
                                 </div>
@@ -133,25 +133,25 @@ if (isset($_SESSION['type_id']) && $_SESSION['type_id'] <= 4) {
                                     <h3 class="card-title">Sobre mi</h3>
                                 </div>
                                 <div class="card-body">
-                                    <strong ><i class='fas fa-venus-mars mr-1'></i> Género</strong>
+                                    <strong style="color: #320a48;"><i class='fas fa-venus-mars mr-1'></i> Género</strong>
                                     <p class="text-muted" id="genero"></p>
-                                    <strong ><i class='fas fa-calendar-alt mr-1'></i> Fecha Nacimiento</strong>
+                                    <strong style="color: #320a48;"><i class='fas fa-calendar-alt mr-1'></i> Fecha Nacimiento</strong>
                                     <p class="text-muted" id="fecha_nac"></p>
-                                    <strong ><i class='fas fa-phone mr-1'></i> Teléfono</strong>
+                                    <strong style="color: #320a48;"><i class='fas fa-phone mr-1'></i> Teléfono</strong>
                                     <p class="text-muted" id="p_telefono"></p>
-                                    <strong ><i class='fas fa-mobile-alt mr-1'></i> Celular</strong>
+                                    <strong style="color: #320a48;"><i class='fas fa-mobile-alt mr-1'></i> Celular</strong>
                                     <p class="text-muted" id="p_celular"></p>
-                                    <strong ><i class='fas fa-map-marker-alt mr-1'></i> Residencia</strong>
+                                    <strong style="color: #320a48;"><i class='fas fa-map-marker-alt mr-1'></i> Residencia</strong>
                                     <p class="text-muted" id="p_residencia"></p>
-                                    <strong ><i class='fas fa-at mr-1'></i> Email</strong>
+                                    <strong style="color: #320a48;"><i class='fas fa-at mr-1'></i> Email</strong>
                                     <p class="text-muted" id="p_email"></p>
-                                    <strong ><i class='fas fa-map-marker-alt mr-1'></i> Región</strong>
+                                    <strong style="color: #320a48;"><i class='fas fa-map-marker-alt mr-1'></i> Región</strong>
                                     <p class="text-muted" id="p_region"></p>
-                                    <strong ><i class='fas fa-user-check mr-1'></i> Cargo</strong>
+                                    <strong style="color: #320a48;"><i class='fas fa-user-check mr-1'></i> Cargo</strong>
                                     <p class="text-muted" id="p_cargo"></p>
-                                    <strong ><i class='fas fa-user-shield mr-1'></i> Tipo Usuario</strong>
+                                    <strong style="color: #320a48;"><i class='fas fa-user-shield mr-1'></i> Tipo Usuario</strong>
                                     <p class="text-muted" id="p_tipo"></p>
-                                    <strong ><i class='fas fa-pencil-alt mr-1'></i> Información Adicional</strong>
+                                    <strong style="color: #320a48;"><i class='fas fa-pencil-alt mr-1'></i> Información Adicional</strong>
                                     <p class="text-muted" id="p_info"></p>
                                     <button class="edit btn btn-block bg-gradient-danger">Editar</button>
                                     <p class="text-muted">Clic en el botón para editar</p>

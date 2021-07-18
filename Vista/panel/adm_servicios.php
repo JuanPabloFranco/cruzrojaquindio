@@ -25,15 +25,11 @@ if (isset($_SESSION['type_id']) && $_SESSION['type_id'] <= 2 || ($_SESSION['perm
                         <div class="card-body">
                             <div class="div form-group">
                                 <label for="txtNombreServ">Nombre del servicio</label>
-                                <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre del servicio" id="txtNombreServ" required>
+                                <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre de la region" id="txtNombreServ" required>
                             </div>
                             <div class="div form-group">
                                 <label for="txtDescServ">Descripción servicio</label>
                                 <textarea name="" id="txtDescServ" cols="30" rows="5" placeholder="Ingresa la descripción del servicio" class="form-control"></textarea>
-                            </div>
-                            <div class="div form-group">
-                                <label for="txtValorServ">Valor del servicio</label>
-                                <input type="number" class="form-control" name="nombre" placeholder="Ingrese el valor del servicio" id="txtValorServ" required>
                             </div>
                             <div class="alert alert-success text-center" id="divCreate" style="display: none;">
                                 <span><i class='fas fa-check m-1'> Servicio registrado</i></span>
@@ -70,10 +66,6 @@ if (isset($_SESSION['type_id']) && $_SESSION['type_id'] <= 2 || ($_SESSION['perm
                             <label for="txtDescServ2">Descripción servicio</label>
                             <textarea name="" id="txtDescServ2" cols="30" rows="5" placeholder="Ingresa la descripción del servicio" class="form-control"></textarea>
                         </div>
-                        <div class="div form-group">
-                                <label for="txtValorServ2">Valor del servicio</label>
-                                <input type="number" class="form-control" name="nombre" placeholder="Ingrese el valor del servicio" id="txtValorServ2" required>
-                            </div>
                         <div class="input-group mb-3">
                             <input type="hidden" id="txtId_ServicioEd" name="id">
                         </div>

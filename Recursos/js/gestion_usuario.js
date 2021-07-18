@@ -31,8 +31,7 @@ $(document).ready(function() {
     function buscarGestionUsuarios(consulta) {
         
         var funcion = "buscar_gestion_usuario";
-        $.post('../Controlador/usuario_controler.php', { consulta, funcion, id_cargo, tipo_usuario }, (response) => {
-            console.log(response)
+        $.post('../Controlador/usuario_controler.php', { consulta, funcion, id_cargo, id_sede, tipo_usuario }, (response) => {
             const usuarios = JSON.parse(response);
             let template = "";
             usuarios.forEach(usuario => {
@@ -48,9 +47,6 @@ $(document).ready(function() {
                 if (usuario.tipo_usuario == 3) {
                     template += `<h1 class='badge badge-info'>${usuario.nombre_tipo}</h1>`;
                 }
-                if (usuario.tipo_usuario == 4) {
-                    template += `<h1 class='badge badge-primary'>${usuario.nombre_tipo}</h1>`;
-                }
                 if (usuario.estado == "Activo") {
                     template += `<h1 class="badge badge-success ml-1">${usuario.estado}</h1>`;
                 } else {
@@ -61,18 +57,17 @@ $(document).ready(function() {
                     <div class="row">
                       <div class="col-8">
                         <h2 class="lead"><b>${usuario.nombre_completo}</b></h2>
-                        <p class="text-muted text-sm"><b>Sobre mi: </b> ${usuario.inf_usuario} </p>
+                        <p class="text-muted text-sm"><b>Sobre mi: </b> ${usuario.inf_voluntario} </p>
                         <ul class="ml-4 mb-0 fa-ul text-muted">
                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-birthday-cake"></i></span> Edad: ${usuario.edad} años</li>
                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Dirección: ${usuario.res_usuario}</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Teléfono #: ${usuario.cel_usuario}</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email: ${usuario.email_usuario}</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-map-marker-alt"></i></span> Nacionalidad: ${usuario.nacionalidad}</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-map-marker-alt"></i></span> Residencia: ${usuario.municipio} (${usuario.departamento})</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Teléfono #: ${usuario.tel_voluntario}</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email: ${usuario.email_voluntario}</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-map-marker-alt"></i></span> Región: ${usuario.nombre_region}</li>
                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-sitemap"></i></span> Cargo: ${usuario.nombre_cargo}</li>
                         </ul>`;
-                if (usuario.cel_usuario != null && usuario.cel_usuario != '') {
-                    template += `<a href="https://api.whatsapp.com/send?phone=+57${usuario.cel_usuario}&amp;text=Hola, me interesaría obtener información" target="_blank">
+                if (usuario.cel_voluntario != null && usuario.cel_voluntario != '') {
+                    template += `<a href="https://api.whatsapp.com/send?phone=+57${usuario.cel_voluntario}&amp;text=Hola, me interesaría obtener información" target="_blank">
                                     <img src="../Recursos/img/whatsapp_icon.png" alt="" width="30px">
                                 </a>`;
                 }

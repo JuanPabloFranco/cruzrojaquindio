@@ -3,7 +3,7 @@ include_once '../Modelo/Servicio.php';
 $servicio = new Servicio();
 
 if ($_POST['funcion'] == 'crear_servicio') {
-    $servicio->crear($_POST['nombre'], $_POST['descrip'], $_POST['valor']);    
+    $servicio->crear($_POST['nombre'], $_POST['descrip']);    
 }
 
 if ($_POST['funcion'] == 'buscar_servicio') {
@@ -14,8 +14,7 @@ if ($_POST['funcion'] == 'buscar_servicio') {
             'id' => $objeto->id,
             'nombre_servicio' => $objeto->nombre_servicio,
             'estado_servicio' => $objeto->estado_servicio,
-            'descripcion' => $objeto->descripcion,
-            'valor' => $objeto->valor
+            'descripcion' => $objeto->descripcion
         );
     }
     $jsonstring = json_encode($json);
@@ -29,8 +28,7 @@ if ($_POST['funcion'] == 'cargarServicio') {
     foreach ($servicio->objetos as $objeto) {
         $json[] = array(
             'nombre_servicio' => $objeto->nombre_servicio,
-            'descripcion' => $objeto->descripcion,
-            'valor' => $objeto->valor
+            'descripcion' => $objeto->descripcion
         );
     }
     $jsonstring = json_encode($json[0]);
@@ -38,7 +36,7 @@ if ($_POST['funcion'] == 'cargarServicio') {
 }
 
 if ($_POST['funcion'] == 'editar_servicio') {
-    $servicio->editar_serrvicio($_POST['id'],$_POST['nombre'], $_POST['desc'], $_POST['valor']);    
+    $servicio->editar_serrvicio($_POST['id'],$_POST['nombre'], $_POST['desc']);    
 }
 
 if ($_POST['funcion'] == 'changeEstadoServicio') {

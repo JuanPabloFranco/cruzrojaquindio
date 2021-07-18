@@ -6,13 +6,13 @@ if (!empty($_SESSION['type_id'])) {
     session_destroy();
 ?>
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="es">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>
-        <link rel="shortcut icon" type="image/x-icon" href="Recursos/img/logo.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="Recursos/img/cruz_icono.png" />
         <script src="Recursos/js/jquery.min.js"></script>
         <script src="Recursos/js/bootstrap.min.js"></script>
         <!-- Font Awesome -->
@@ -41,11 +41,10 @@ if (!empty($_SESSION['type_id'])) {
     </head>
 
     <body>
-        <!-- <img class="wave" src="Recursos/img/hero-bg.png" alt=""> -->
         <div class="contenedor">
-            <!-- <div class="img">
-                <img src="Recursos/img/logo.png" alt="">
-            </div> -->
+            <div class="img">
+                <img src="Recursos/img/banco/edificio.jpg" alt="">
+            </div>
             <div class="contenido-login">
                 <form action="Controlador/loginControler.php" method="post">
                     <img src="Recursos/img/logo.png" alt="">

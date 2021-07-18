@@ -44,7 +44,7 @@ if (isset($_SESSION['type_id'])) {
                             </div>
                             <div class="div form-group">
                                 <label for="selDirigido">Dirigido a</label>
-                                <select name="dirigido" id="selDirigido" class="form-control" required>
+                                <select name="dirigido" id="selDirigido" class="form-control" required >
                                     <option value="0">Seleccione una opción</option>
                                     <?php
                                     if ($_SESSION['id_cargo'] >= 2 && $_SESSION['id_cargo'] <= 7 || ($_SESSION['type_id'] <= 2)) {
@@ -317,7 +317,8 @@ if (isset($_SESSION['type_id'])) {
                     <div class="card-body pb-0">
                         <div id="busquedaNota" class="row d-flex align-items-stretch"></div>
                     </div>
-                    <div class="card-footer">                    
+                    <div class="card-footer">
+                    </div>
                 </div>
             </div>
         </section>
