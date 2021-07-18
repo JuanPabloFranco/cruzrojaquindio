@@ -1,7 +1,7 @@
 <?php
 class Conexion{
     private $servidor = "localhost";
-    private $db = "hdagolondrinas";
+    private $db = "cruzroja";
     private $puerto = "3306";
     private $charset = "utf8";
     private $user = "root";

@@ -8,7 +8,7 @@ class ejecutarSQL {
     public static function conectar() {
         $host = "localhost";
         $user = "root";
-        $bd = "hdagolondrinas";
+        $bd = "cruzroja";
         $pass = "";
         if (!$con = mysqli_connect($host, $user, $pass, $bd)) {
             die(mysqli_error(ejecutarSQL::conectar()) . "Error en el servidor, verifique sus datos");
