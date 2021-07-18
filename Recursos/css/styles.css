@@ -1,0 +1,41 @@
+.text_panel{
+    color: #0842ad;
+}
+
+.cardEvent {
+    padding: 40px 20px;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.08);
+    border-radius: 4px;
+    color: #0842ad;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.cardEvent :hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+.notiHeader {
+    background-color: #0842ad;
+    color: white;
+}
+
+.centrado {
+    margin: 2px auto;
+    display: block;
+}
+
+.flotante {
+    display: scroll;
+    position: fixed;
+    bottom: 90px;
+    left: 0px;
+}
+
+.flotante:hover {
+    transform: translateY(-7px);
+}
