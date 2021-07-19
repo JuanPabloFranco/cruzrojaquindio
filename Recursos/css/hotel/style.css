@@ -635,6 +635,10 @@ a:focus {
 	color: #fff !important;
 }
 
+.light_orange{
+	background-color: #fb7f00;
+}
+
 .light_silver_fonts p,
 .light_silver_fonts h1,
 .light_silver_fonts h2,
@@ -1587,8 +1591,8 @@ body.light_blue #full_slider.full_slider_inner {
 	-------------------------------------------------------------------*/
 
 .padding_layout_1 {
-	padding-top: 120px;
-	padding-bottom: 115px;
+	padding-top: 60px;
+	padding-bottom: 60px;	
 }
 
 .padding_layout_2 {
@@ -1974,6 +1978,7 @@ section.dottad_star_bg {
 
 .contant_form .form_section {
 	margin-top: 30px;
+	
 }
 
 .contact_information .information_bottom {
@@ -3128,6 +3133,7 @@ span.skill {
 
 .product_img img {
 	padding: 22px;
+	border-radius: 40px;
 }
 
 .cleaning .product_img img {
@@ -3340,7 +3346,7 @@ footer h4 {
 .footer_blog {
 	float: left;
 	width: 65%;
-	padding: 75px 75px 100px 75px;
+	padding: 75px 75px 0px 75px;
 }
 
 footer h2 {
