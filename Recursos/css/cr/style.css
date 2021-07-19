@@ -445,7 +445,7 @@ a.join_bt:focus {
     padding: 10px 25px;
     font-weight: 400;
     overflow: hidden;
-    color: black;
+    color: rgb(255, 255, 255);
     position: relative;
     z-index: 2;
 }
@@ -458,12 +458,14 @@ a.navbar-brand {
 .top-header .navbar .navbar-collapse ul li a.active {
 	background: transparent;
     color: #fff;
+	font-size: 10px;
 }
 
 .top-header .navbar .navbar-collapse ul li a:hover, 
 .top-header .navbar .navbar-collapse ul li a:focus {
     background: transparent;
     color: #fff;
+	font-size: 20px;
 }
 
 .search_icon.nav-link img {
