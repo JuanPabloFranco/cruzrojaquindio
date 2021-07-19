@@ -1,19 +1,21 @@
-
-.carousel,.carousel .carousel-inner,.carousel .carousel-inner 
-.active,.carousel .carousel-inner .carousel-item,.view,body,html{
-    height:100%
+.accordion-button{
+    padding: 8px;
+    color: red;
 }
 
-#btnPre{
-    margin-left: 60px;
-    position: absolute;
+.accordion-button:not(.collapsed) {
+    color: red;
+    background-color: #ffffff;
+    box-shadow: red;
 }
 
-#btpPro{
-    margin-right: 60px;
-    position: absolute;
+.accordion-button:focus {
+    z-index: 3;
+    border-color: red;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(239 3 36 / 25%);
 }
 
-#slide{
-    padding-top: 0px !important;
+.accordion-body strong{
+    color: red !important;
 }

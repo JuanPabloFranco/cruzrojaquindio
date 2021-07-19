@@ -2333,12 +2333,13 @@ ul.bottom_menu li {
     background-position: center center;
     min-height: 650px;
     padding: 80px 0;
+	text-align: center;
 }
 
 
 
 .field input {
-    width: 100%;
+    width: 50%;
     background: #fff;
     min-height: 65px;
     border: none;
@@ -2351,7 +2352,7 @@ ul.bottom_menu li {
 }
 
 .field textarea {
-	width: 100%;
+	width: 50%;
     background: #fff;
     min-height: 120px;
     border: none;
