@@ -302,19 +302,7 @@
                                                     <i class="fas fa-newspaper nav-icon"></i>
                                                     <p>Noticias Cruz Roja</p>
                                                 </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="../../Vista/panel/adm_noticias.php?modulo=noticias" class="nav-link <?= $_GET['modulo'] == 'noticias' ? 'active' : '' ?>">
-                                                    <i class="fas fa-newspaper nav-icon"></i>
-                                                    <p>Noticias Banco de sangre</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="../../Vista/panel/adm_noticias.php?modulo=noticias" class="nav-link <?= $_GET['modulo'] == 'noticias' ? 'active' : '' ?>">
-                                                    <i class="fas fa-newspaper nav-icon"></i>
-                                                    <p>Noticias Hotel</p>
-                                                </a>
-                                            </li>
+                                            </li>                                            
                                         </ul>
                                     </li>
                                 <?php
