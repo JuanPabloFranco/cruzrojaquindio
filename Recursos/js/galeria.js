@@ -9,7 +9,7 @@ $(document).ready(function () {
     function buscar_avatar() {
         var id = $('#txtId_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -22,7 +22,7 @@ $(document).ready(function () {
         formData.append("dato", "valor");
         var peticion = $('#form_crear_foto').attr('action');
         $.ajax({
-            url: '../Controlador/imagen_controler.php',
+            url: '../../Controlador/imagen_controler.php',
             type: 'POST',
             data: formData,
             cache: false,
@@ -56,7 +56,7 @@ $(document).ready(function () {
     function buscarFotos(consulta) {
         var funcion = "buscar_fotos";
         let id = $('#id_sede').val();
-        $.post('../Controlador/imagen_controler.php', { consulta, funcion, id }, (response) => {
+        $.post('../../Controlador/imagen_controler.php', { consulta, funcion, id }, (response) => {
             const objetos = JSON.parse(response);
             let template = "";
             num = 0;
@@ -78,7 +78,7 @@ $(document).ready(function () {
                   <div class="card-body pt-0">
                     <div class="row">
                       <div class="col-12">`;
-                template += `<img class='' src='../Recursos/img/fotos_sede/${obj.nombre_foto}' style='width: 100%'>
+                template += `<img class='' src='../../Recursos/img/fotos_sede/${obj.nombre_foto}' style='width: 100%'>
                         <ul class="ml-4 mb-0 fa-ul text-muted">
                             <li class="small"><span class="fa-li"></span>${obj.desc_foto}</li>                        
                         </ul>`;
@@ -99,10 +99,10 @@ $(document).ready(function () {
         const id = $(elemento).attr('fotoId');
         $('#txtId_fotoEd').val(id);
         funcion = 'cargarFoto';
-        $.post('../Controlador/imagen_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/imagen_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtDescServ2').val(obj.desc_foto);
-            $('#imgFoto').attr('src', '../Recursos/img/fotos_sede/' + obj.nombre_foto);
+            $('#imgFoto').attr('src', '../../Recursos/img/fotos_sede/' + obj.nombre_foto);
         });
     });
 
@@ -118,7 +118,7 @@ $(document).ready(function () {
                 const id = $(elemento).attr('fotoId');
                 $('#txtId_fotoEd').val(id);
                 funcion = 'eliminarFoto';
-                $.post('../Controlador/imagen_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/imagen_controler.php', { id, funcion }, (response) => {
                     Swal.fire('Eliminado!', '', 'success');
                     buscarFotos();
                 });
@@ -132,7 +132,7 @@ $(document).ready(function () {
         let id = $('#txtId_fotoEd').val();
         let desc = $('#txtDescServ2').val();
         funcion = 'editar_imagen';
-        $.post('../Controlador/imagen_controler.php', { funcion, id, desc }, (response) => {
+        $.post('../../Controlador/imagen_controler.php', { funcion, id, desc }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);

@@ -1,14 +1,14 @@
 <?php
 session_start();
 if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2)) {
-    include_once '../Vista/layouts/header.php'
+    include_once '../../Vista/layouts/header.php'
 ?>
     <title>Adm | Cargos</title>
     <?php
-    include_once '../Vista/layouts/nav.php';
+    include_once '../../Vista/layouts/nav.php';
     ?>
     <!-- Modal -->
-    <script src="../Recursos/js/configuracion.js"></script>
+    <script src="../../Recursos/js/configuracion.js"></script>
     <input type="hidden" id="id_usuario" value="<?php echo $_SESSION['id_user']; ?>">
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -20,7 +20,7 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2)) {
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="../Vista/adm_catalogo.php">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="../../Vista/adm_catalogo.php">Inicio</a></li>
                             <li class="breadcrumb-item active">Configurar Web</li>
                         </ol>
                     </div>
@@ -162,8 +162,8 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2)) {
     </div>
     <!-- /.content-wrapper -->
 <?php
-    include_once '../Vista/layouts/footer.php';
+    include_once '../../Vista/layouts/footer.php';
 } else {
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 }
 ?>

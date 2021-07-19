@@ -1,15 +1,15 @@
 <?php
 session_start();
 if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id_cargo'] >= 2)) {
-    include_once '../Vista/layouts/header.php';
-    include_once '../Conexion/consulSQL.php';
+    include_once '../../Vista/layouts/header.php';
+    include_once '../../Conexion/consulSQL.php';
 ?>
     <title>Adm | Administrar Reservas</title>
     <?php
-    include_once '../Vista/layouts/nav.php';
+    include_once '../../Vista/layouts/nav.php';
     ?>
     <!-- Modal -->
-    <script src="../Recursos/js/gestion_reservas.js"></script>
+    <script src="../../Recursos/js/gestion_reservas.js"></script>
     <input type="hidden" id="id_usuario" value="<?php echo $_SESSION['id_user']; ?>">
     <input type="hidden" id="tipo_usuario" value="<?php echo $_SESSION['type_id']; ?>">
     <input type="hidden" id="id_cargo" value="<?php echo $_SESSION['id_cargo']; ?>">
@@ -27,7 +27,7 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
                             <?php
                             if ($_SESSION['type_id'] <= 2 || ($_SESSION['permisos'][0]->reservas == 'Activo' && $_SESSION['permisos'][0]->cobertura == 'Full')) {
                             ?>
-                                <a href="../Vista/crear_reserva.php?modulo=reservas"><button type="button" id="btn_crear_reserva" class="btn bg-gradient-primary m-2">Registrar Reserva</button></a>
+                                <a href="../../Vista/panel/crear_reserva.php?modulo=reservas"><button type="button" id="btn_crear_reserva" class="btn bg-gradient-primary m-2">Registrar Reserva</button></a>
                             <?php
                             }
                             ?>
@@ -35,7 +35,7 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="../Vista/adm_catalogo.php">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="../../Vista/adm_catalogo.php">Inicio</a></li>
                             <li class="breadcrumb-item active">Gestión Reservas</li>
                         </ol>
                     </div>
@@ -63,8 +63,8 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
     </div>
     <!-- /.content-wrapper -->
 <?php
-    include_once '../Vista/layouts/footer.php';
+    include_once '../../Vista/layouts/footer.php';
 } else {
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 }
 ?>

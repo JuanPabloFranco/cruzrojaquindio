@@ -8,7 +8,7 @@ $(document).ready(function() {
     function buscar_avatar() {
         var id = $('#id_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     function cargarDatosSede() {
         funcion = 'cargarSede';
-        $.post('../Controlador/sede_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/sede_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtNombreSede2').val(obj.nombre_sede);
             $('#txtCiudadSede2').val(obj.ciudad_sede);
@@ -45,7 +45,7 @@ $(document).ready(function() {
         let twitter = $('#txtTwitterSede2').val();
         let youtube = $('#txtYoutubeSede2').val();
         funcion = 'editar_sede';
-        $.post('../Controlador/sede_controler.php', { funcion, id, nombre, ciudad, direccion, telefono, email, wp, nit, fb, instagram, twitter, youtube }, (response) => {
+        $.post('../../Controlador/sede_controler.php', { funcion, id, nombre, ciudad, direccion, telefono, email, wp, nit, fb, instagram, twitter, youtube }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);

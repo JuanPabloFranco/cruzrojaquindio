@@ -14,7 +14,7 @@ $(document).ready(function () {
 
     function buscar_avatar(id) {
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -31,7 +31,7 @@ $(document).ready(function () {
 
     function buscarGestionVisitas(consulta) {
         var funcion = "buscar_visitas";
-        $.post('../Controlador/visita_controler.php', { consulta, funcion }, (response) => {
+        $.post('../../Controlador/visita_controler.php', { consulta, funcion }, (response) => {
             const usuarios = JSON.parse(response);
             let num = 0;
             let template = `<div class="col-md-12">
@@ -107,7 +107,7 @@ $(document).ready(function () {
         if (fecha_hoy >= '01-01-2020' && fecha_hoy >= fecha_inicio) {
             if (id_servicio == 1 && fecha_fin == '0000-00-00') {
                 funcion = 'crear_visita';
-                $.post('../Controlador/visita_controler.php', { id_usuario, funcion, nombre, documento, cel_usuario, email_usuario, id_nacionalidad, id_municipio, id_cargo, id_tipo_usuario, id_servicio, fecha_inicio, fecha_fin }, (response) => {
+                $.post('../../Controlador/visita_controler.php', { id_usuario, funcion, nombre, documento, cel_usuario, email_usuario, id_nacionalidad, id_municipio, id_cargo, id_tipo_usuario, id_servicio, fecha_inicio, fecha_fin }, (response) => {
                     console.log(response);
                     if (response == 'creado') {
                         $('#create').hide('slow');
@@ -125,7 +125,7 @@ $(document).ready(function () {
             } else {
                 if (fecha_fin >= fecha_inicio) {
                     funcion = 'crear_visita';
-                    $.post('../Controlador/visita_controler.php', { id_usuario, funcion, nombre, documento, cel_usuario, email_usuario, id_nacionalidad, id_municipio, id_cargo, id_tipo_usuario, id_servicio, fecha_inicio, fecha_fin }, (response) => {
+                    $.post('../../Controlador/visita_controler.php', { id_usuario, funcion, nombre, documento, cel_usuario, email_usuario, id_nacionalidad, id_municipio, id_cargo, id_tipo_usuario, id_servicio, fecha_inicio, fecha_fin }, (response) => {
                         console.log(response);
                         if (response == 'creado') {
                             $('#create').hide('slow');
@@ -161,7 +161,7 @@ $(document).ready(function () {
         const id = $(elemento).attr('idVisita');
         $('#txtIdCc').val(id);
         funcion = 'cargarCc';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtDoc2').val(obj.doc_id);
             $('#txtRegionEd').val(obj.id_region);
@@ -176,7 +176,7 @@ $(document).ready(function () {
         let doc = $('#txtDoc2').val();
         let id_sede = $('#txtSedeEd').val();
         let id_cargo = $('#selCargoEd').val();
-        $.post('../Controlador/usuario_controler.php', { id, funcion, doc, id_sede, id_cargo }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion, doc, id_sede, id_cargo }, (response) => {
             if (response == 'update') {
                 buscarGestionVisitas();
                 $('#updateCc').hide('slow');
@@ -195,7 +195,7 @@ $(document).ready(function () {
 
     function contar_visitas() {
         funcion = 'contar_visitas';
-        $.post('../Controlador/visita_controler.php', { funcion }, (response) => {
+        $.post('../../Controlador/visita_controler.php', { funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#liBadge').html(obj.cantidad+" visitas registradas");
         });
@@ -204,7 +204,7 @@ $(document).ready(function () {
     $("#txtDoc").blur(function () {
         funcion = 'buscar_visitante';
         let documento = $('#txtDoc').val();
-        $.post('../Controlador/usuario_controler.php', { documento, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { documento, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#txtNombreUsuario').val(usuario.nombre_completo);
             $('#txtTelefono').val(usuario.cel_usuario);

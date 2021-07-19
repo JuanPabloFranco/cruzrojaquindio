@@ -5,8 +5,8 @@ $fecha = date("Y-m-d");
 
 <body>
     <?php
-    require '../Recursos/fpdf/plantillas/PDFCarta.php';
-    include_once '../Conexion/consulSQL.php';
+    require '../../Recursos/fpdf/plantillas/PDFCarta.php';
+    include_once '../../Conexion/consulSQL.php';
     $pdf = new PDFCarta('P', 'mm', array(216, 280));
 
     // estado civil 28
@@ -49,7 +49,7 @@ $fecha = date("Y-m-d");
     $pdf->Cell(40, 4, utf8_decode($vecResVol[1]), 1, 0, 'C', 1);
     $pdf->Cell(25, 4, utf8_decode($vecResVol[3]), 1, 0, 'C', 1);
     $pdf->Cell(25, 4, utf8_decode($vecResVol[4]), 1, 0, 'C', 1);
-    $pdf->Image('../Recursos/img/avatars/' . $vecResVol[7], 171, 34.2, 33, 35);
+    $pdf->Image('../../Recursos/img/avatars/' . $vecResVol[7], 171, 34.2, 33, 35);
 
     // DATOS RENGLON 2
     $pdf->Ln(4);
@@ -476,7 +476,7 @@ $fecha = date("Y-m-d");
             $pdf->AddPage();
             $pdf->Ln(5);
             $y = $pdf->GetY();
-            $pdf->Image('../Recursos/img/soportes_usuario/' . $soporte['soporte'], 30, $pdf->GetY() + 3, 155);
+            $pdf->Image('../../Recursos/img/soportes_usuario/' . $soporte['soporte'], 30, $pdf->GetY() + 3, 155);
         }
     }
 

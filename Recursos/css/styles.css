@@ -1,5 +1,5 @@
 .text_panel{
-    color: #0842ad;
+    color: red;
 }
 
 .cardEvent {
@@ -8,7 +8,7 @@
     text-align: center;
     box-shadow: 0px 0 30px rgba(1, 41, 112, 0.08);
     border-radius: 4px;
-    color: #0842ad;
+    color: red;
     position: relative;
     overflow: hidden;
     transition: 0.3s;
@@ -20,7 +20,7 @@
 }
 
 .notiHeader {
-    background-color: #0842ad;
+    background-color: red;
     color: white;
 }
 

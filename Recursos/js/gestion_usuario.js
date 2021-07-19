@@ -13,7 +13,7 @@ $(document).ready(function() {
 
     function buscar_avatar(id) {
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -31,7 +31,7 @@ $(document).ready(function() {
     function buscarGestionUsuarios(consulta) {
         
         var funcion = "buscar_gestion_usuario";
-        $.post('../Controlador/usuario_controler.php', { consulta, funcion, id_cargo, id_sede, tipo_usuario }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { consulta, funcion, id_cargo, id_sede, tipo_usuario }, (response) => {
             const usuarios = JSON.parse(response);
             let template = "";
             usuarios.forEach(usuario => {
@@ -68,22 +68,22 @@ $(document).ready(function() {
                         </ul>`;
                 if (usuario.cel_voluntario != null && usuario.cel_voluntario != '') {
                     template += `<a href="https://api.whatsapp.com/send?phone=+57${usuario.cel_voluntario}&amp;text=Hola, me interesaría obtener información" target="_blank">
-                                    <img src="../Recursos/img/whatsapp_icon.png" alt="" width="30px">
+                                    <img src="../../Recursos/img/whatsapp_icon.png" alt="" width="30px">
                                 </a>`;
                 }
                 if (usuario.facebook != null && usuario.facebook != '') {
                     template += `<a href="${usuario.facebook}" target="_blank">
-                                    <img src="../Recursos/img/facebook_icon.png" alt="" width="30px">
+                                    <img src="../../Recursos/img/facebook_icon.png" alt="" width="30px">
                                 </a>`;
                 }
                 if (usuario.instagram != null && usuario.instagram != '') {
                     template += `<a href="${usuario.instagram}" target="_blank">
-                                    <img src="../Recursos/img/instagram_icon.png" alt="" width="30px">
+                                    <img src="../../Recursos/img/instagram_icon.png" alt="" width="30px">
                                 </a>`;
                 }
                 if (usuario.twitter != null && usuario.twitter != '') {
                     template += `<a href="${usuario.twitter}" target="_blank">
-                                    <img src="../Recursos/img/twitter_icon.png" alt="" width="30px">
+                                    <img src="../../Recursos/img/twitter_icon.png" alt="" width="30px">
                                 </a>`;
                 }
 
@@ -131,7 +131,7 @@ $(document).ready(function() {
                     }
                 }
                 if ((id_cargo != 1) || (tipo_usuario <= 2)) {
-                    template += `<a href='../Vista/hv_pdf.php?id=${usuario.id}&hoja=carta' target='_blank'><button class='btn btn-sm btn-warning ml-1' type='button' title='Exportar'>
+                    template += `<a href='../../Vista/hv_pdf.php?id=${usuario.id}&hoja=carta' target='_blank'><button class='btn btn-sm btn-warning ml-1' type='button' title='Exportar'>
                         <i class="fas fa-file-pdf"></i> PDF
                     </button></a>`;
                 }
@@ -150,7 +150,7 @@ $(document).ready(function() {
         let id_cargo = $('#selCargo').val();
         let id_sede = $('#txtSede').val();
         funcion = 'crear_usuario';
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion, nombre, documento, id_cargo, id_sede }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion, nombre, documento, id_cargo, id_sede }, (response) => {
             if (response == 'agregado') {
                 $('#create').hide('slow');
                 $('#create').show(1000);
@@ -201,7 +201,7 @@ $(document).ready(function() {
         const id = $(elemento).attr('usuarioId');
         $('#txtIdCc').val(id);
         funcion = 'cargarCc';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtDoc2').val(obj.doc_id);
             $('#txtRegionEd').val(obj.id_region);
@@ -213,7 +213,7 @@ $(document).ready(function() {
         funcion = $('#txtFuncionConfirm').val();
         let pass = $('#txtPass').val();
         let estado = $('#txtEstadoConfirm').val();
-        $.post('../Controlador/usuario_controler.php', { id, funcion, pass, estado }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion, pass, estado }, (response) => {
             if (response == 'ascendido' || response == 'descendido' || response == 'actualizado' || response == 'exito') {
                 buscarGestionUsuarios();
                 $('#updateAsc').hide('slow');
@@ -236,7 +236,7 @@ $(document).ready(function() {
         let doc = $('#txtDoc2').val();
         let id_sede = $('#txtSedeEd').val();
         let id_cargo = $('#selCargoEd').val();
-        $.post('../Controlador/usuario_controler.php', { id, funcion, doc, id_sede, id_cargo }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion, doc, id_sede, id_cargo }, (response) => {
             if (response == 'update') {
                 buscarGestionUsuarios();
                 $('#updateCc').hide('slow');

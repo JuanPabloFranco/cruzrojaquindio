@@ -7,7 +7,7 @@ $(document).ready(function() {
     function buscar_avatar() {
         var id = $('#id_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -18,7 +18,7 @@ $(document).ready(function() {
         let nombre = $('#txtNombreServ').val();
         let descrip = $('#txtDescServ').val();
         funcion = 'crear_servicio';
-        $.post('../Controlador/servicio_controler.php', { funcion, nombre, descrip }, (response) => {
+        $.post('../../Controlador/servicio_controler.php', { funcion, nombre, descrip }, (response) => {
             if (response == 'creado') {
                 $('#divCreate').hide('slow');
                 $('#divCreate').show(1000);
@@ -46,7 +46,7 @@ $(document).ready(function() {
 
     function buscarServicios(consulta) {
         var funcion = "buscar_servicio";
-        $.post('../Controlador/servicio_controler.php', { consulta, funcion }, (response) => {
+        $.post('../../Controlador/servicio_controler.php', { consulta, funcion }, (response) => {
             const objetos = JSON.parse(response);
             num = 0;
             let template = `<div class="col-md-12">
@@ -105,7 +105,7 @@ $(document).ready(function() {
         const id = $(elemento).attr('idServicio');
         $('#txtId_ServicioEd').val(id);
         funcion = 'cargarServicio';
-        $.post('../Controlador/servicio_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/servicio_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtNombreServ2').val(obj.nombre_servicio);
             $('#txtDescServ2').val(obj.descripcion);
@@ -125,7 +125,7 @@ $(document).ready(function() {
         let nombre = $('#txtNombreServ2').val();
         let desc = $('#txtDescServ2').val();
         funcion = 'editar_servicio';
-        $.post('../Controlador/servicio_controler.php', { funcion, id, nombre, desc }, (response) => {
+        $.post('../../Controlador/servicio_controler.php', { funcion, id, nombre, desc }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);
@@ -145,7 +145,7 @@ $(document).ready(function() {
         const elemento = $(this)[0].activeElement.parentElement.parentElement;
         const id = $(elemento).attr('idServicio');
         funcion = 'changeEstadoServicio';
-        $.post('../Controlador/servicio_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/servicio_controler.php', { id, funcion }, (response) => {
             buscarServicios();
         });
     });
@@ -157,7 +157,7 @@ $(document).ready(function() {
         formData.append("dato", "valor");
         var peticion = $('#form_crear_foto').attr('action');
         $.ajax({
-            url: '../Controlador/servicio_controler.php',
+            url: '../../Controlador/servicio_controler.php',
             type: 'POST',
             data: formData,
             cache: false,
@@ -183,7 +183,7 @@ $(document).ready(function() {
     function buscarFotosServicios() {
         var id_servicio = $('#txtIdServImage').val();
         var funcion = "buscar_foto_servicio";
-        $.post('../Controlador/servicio_controler.php', { funcion, id_servicio }, (response) => {
+        $.post('../../Controlador/servicio_controler.php', { funcion, id_servicio }, (response) => {
             const objetos = JSON.parse(response);
             let template = "";
             num = 0;
@@ -219,7 +219,7 @@ $(document).ready(function() {
         const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement;        
         const id = $(elemento).attr('fotoId');
         funcion = 'eliminarFotoServicio';
-        $.post('../Controlador/servicio_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/servicio_controler.php', { id, funcion }, (response) => {
             if (response == 'eliminado') {
                 $('#divCreateFoto').hide('slow');
                 $('#divCreateFoto').show(1000);

@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     function buscar_avatar(id) {
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -34,7 +34,7 @@ $(document).ready(function () {
 
     function buscarGestionReservas(consulta) {
         var funcion = "buscar";
-        $.post('../Controlador/reserva_controler.php', { consulta, funcion }, (response) => {
+        $.post('../../Controlador/reserva_controler.php', { consulta, funcion }, (response) => {
             const reservas = JSON.parse(response);
             let num = 0;
             let template = `<div class="col-md-12">
@@ -103,10 +103,10 @@ $(document).ready(function () {
         if (fecha_hoy >= '01-01-2021' && fecha_hoy >= fecha_inicio) {
             if (fecha_fin >= fecha_inicio) {
                 funcion = 'crear';
-                $.post('../Controlador/reserva_controler.php', { funcion, fecha_inicio, fecha_fin, id_visitante, id_descuento, doc_id, nombre_completo, cel_usuario, email_usuario, id_nacionalidad, id_municipio }, (response) => {
+                $.post('../../Controlador/reserva_controler.php', { funcion, fecha_inicio, fecha_fin, id_visitante, id_descuento, doc_id, nombre_completo, cel_usuario, email_usuario, id_nacionalidad, id_municipio }, (response) => {
                     console.log(response);
                     if (response == 'creado') {
-                        $(location).attr('href', '../Vista/adm_reservas.php?modulo=reservas');
+                        $(location).attr('href', '../../Vista/adm_reservas.php?modulo=reservas');
                     } else {
                         $('#noCreate').hide('slow');
                         $('#noCreate').show(1000);
@@ -134,7 +134,7 @@ $(document).ready(function () {
         const id = $(elemento).attr('idReserva');
         $('#txtIdReserva').val(id);
         funcion = 'cargar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtDoc2').val(obj.estado_reserva);
             $('#txtRegionEd').val(obj.fecha_inicio);
@@ -152,7 +152,7 @@ $(document).ready(function () {
         let doc = $('#txtDoc2').val();
         let id_sede = $('#txtSedeEd').val();
         let id_cargo = $('#selCargoEd').val();
-        $.post('../Controlador/usuario_controler.php', { id, funcion, doc, id_sede, id_cargo }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion, doc, id_sede, id_cargo }, (response) => {
             if (response == 'update') {
                 buscarGestionVisitas();
                 $('#updateCc').hide('slow');
@@ -171,7 +171,7 @@ $(document).ready(function () {
 
     function contar_visitas() {
         funcion = 'contar_visitas';
-        $.post('../Controlador/visita_controler.php', { funcion }, (response) => {
+        $.post('../../Controlador/visita_controler.php', { funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#liBadge').html(obj.cantidad + " visitas registradas");
         });
@@ -180,7 +180,7 @@ $(document).ready(function () {
     $("#txtDoc").blur(function () {
         funcion = 'buscar_visitante';
         let documento = $('#txtDoc').val();
-        $.post('../Controlador/usuario_controler.php', { documento, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { documento, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#txtNombreUsuario').val(usuario.nombre_completo);
             $('#txtTelefono').val(usuario.cel_usuario);
@@ -193,7 +193,7 @@ $(document).ready(function () {
     $("#txtDoc_idItem").blur(function () {
         funcion = 'buscar_visitante';
         let documento = $('#txtDoc_idItem').val();
-        $.post('../Controlador/usuario_controler.php', { documento, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { documento, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#txtNombre_completo').val(usuario.nombre_completo);
             $('#txtTelefono').val(usuario.cel_usuario);
@@ -205,7 +205,7 @@ $(document).ready(function () {
 
     function listar_items() {
         var funcion = "listar_items";
-        $.post('../Controlador/reserva_controler.php', { funcion }, (response) => {
+        $.post('../../Controlador/reserva_controler.php', { funcion }, (response) => {
             const items = JSON.parse(response);
             let num = 0;
             let template = ``;

@@ -22,7 +22,7 @@ $(document).ready(function () {
 
     function buscar_avatar(id) {
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -39,7 +39,7 @@ $(document).ready(function () {
         let parentezco = $('#txtParentezco').val();
         let telEmergencia = $('#txtTelEmerg').val();
         funcion = 'update_familiar';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, madre, ocuMadre, telMadre, padre, ocuPadre, telPadre, conEmergencia, parentezco, telEmergencia }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, madre, ocuMadre, telMadre, padre, ocuPadre, telPadre, conEmergencia, parentezco, telEmergencia }, (response) => {
             console.log(response);
             if (response == 'update') {
                 $('#divCreateFam').hide('slow');
@@ -58,7 +58,7 @@ $(document).ready(function () {
 
     function buscarInfUsuario() {
         funcion = 'buscarInfUsuario';
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtNombreMadre').val(obj.nombre_madre);
             $('#txtOcupMadre').val(obj.ocupacion_madre);
@@ -128,7 +128,7 @@ $(document).ready(function () {
         let licencia_descr = $('#txtLicencia_descr').val();
         let act_tiempo_libre = $('#txtAct_tiempo_libre').val();
         funcion = 'update_sociodemografica';
-        $.post('../Controlador/usuario_controler.php', {
+        $.post('../../Controlador/usuario_controler.php', {
             funcion, id_usuario, estrato, estado_civil, grupo_etnico,
             personas_cargo, cabeza_familia, hijos, fuma, fuma_frecuencia, bebidas, bebe_frecuencia, deporte, deporte_frecuencia,
             talla_camisa, talla_pantalon, talla_calzado, tipo_vivienda, licencia_conduccion, licencia_descr, act_tiempo_libre
@@ -196,7 +196,7 @@ $(document).ready(function () {
         let año = $('#txtAñoEstudio').val();
         let ciudad = $('#txtCiudad').val();
         funcion = 'crear_estudio';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, nivel, tipo, titulo, institucion, año, ciudad }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, nivel, tipo, titulo, institucion, año, ciudad }, (response) => {
             console.log(response);
             if (response == 'update') {
                 $('#divCreateEst').hide('slow');
@@ -216,7 +216,7 @@ $(document).ready(function () {
 
     function buscarEstudios() {
         var funcion = "buscarEstudios";
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = ``;
             objetos.forEach(objeto => {
@@ -249,7 +249,7 @@ $(document).ready(function () {
                 const id = $(elemento).attr('idEstudio');
                 alert(id);
                 funcion = 'eliminar_estudio';
-                $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
                     buscarEstudios();
                 });                
             } 
@@ -258,7 +258,7 @@ $(document).ready(function () {
 
     function buscarOtrosEstudios() {
         var funcion = "buscarOtrosEstudios";
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = ``;
             objetos.forEach(objeto => {
@@ -286,7 +286,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('idEstudio');
                 funcion = 'eliminar_otro_estudio';
-                $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
                     buscarOtrosEstudios;
                 });                
             } 
@@ -298,7 +298,7 @@ $(document).ready(function () {
         let tipo = $('#selTipoOtroEst').val();
         let descripcion = $('#txtDescrOtroEst').val();
         funcion = 'crear_otro_estudio';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, tipo, descripcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, tipo, descripcion }, (response) => {
             if (response == 'update') {
                 $('#divCreateOtro').hide('slow');
                 $('#divCreateOtro').show(1000);
@@ -323,7 +323,7 @@ $(document).ready(function () {
         let direccion = $('#txtDirLab').val();
         let telefono = $('#txtTelLab').val();
         funcion = 'update_laboral';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, profesion, ocupacion, empresa, cargo, direccion, telefono }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, profesion, ocupacion, empresa, cargo, direccion, telefono }, (response) => {
             if (response == 'update') {
                 $('#divCreateLab').hide('slow');
                 $('#divCreateLab').show(1000);
@@ -342,7 +342,7 @@ $(document).ready(function () {
 
     function buscarMedicamento() {
         var funcion = "buscarMedicamento";
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = ``;
             objetos.forEach(objeto => {
@@ -369,7 +369,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('idMed');
                 funcion = 'eliminar_medicamento';
-                $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
                     buscarMedicamento();
                 });                
             } 
@@ -378,7 +378,7 @@ $(document).ready(function () {
 
     function buscarEnfermedades() {
         var funcion = "buscarEnfermedades";
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = ``;
             objetos.forEach(objeto => {
@@ -404,7 +404,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('idEnfer');
                 funcion = 'eliminar_enfermedad';
-                $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
                     buscarEnfermedades();
                 });                
             } 
@@ -413,7 +413,7 @@ $(document).ready(function () {
 
     function buscarAlergias() {
         var funcion = "buscarAlergias";
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = ``;
             objetos.forEach(objeto => {
@@ -440,7 +440,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('idAlergia');
                 funcion = 'eliminar_alergia';
-                $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
                     buscarAlergias();
                 });                
             } 
@@ -449,7 +449,7 @@ $(document).ready(function () {
 
     function buscarCirugias() {
         var funcion = "buscarCirugias";
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = ``;
             objetos.forEach(objeto => {
@@ -475,7 +475,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('idCirugia');
                 funcion = 'eliminar_cirugia';
-                $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
                     buscarCirugias();
                 });                
             } 
@@ -484,7 +484,7 @@ $(document).ready(function () {
 
     function buscarLesiones() {
         var funcion = "buscarLesiones";
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = ``;
             objetos.forEach(objeto => {
@@ -511,7 +511,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('idLesion');
                 funcion = 'eliminar_lesion';
-                $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
                     buscarLesiones();
                 });                
             } 
@@ -520,7 +520,7 @@ $(document).ready(function () {
 
     function buscarAntecedentes() {
         var funcion = "buscarAntecedentes";
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = ``;
             objetos.forEach(objeto => {
@@ -546,7 +546,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('idAnte');
                 funcion = 'eliminar_antecedente';
-                $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
                     buscarAntecedentes();
                 });                
             } 
@@ -555,7 +555,7 @@ $(document).ready(function () {
 
     function buscarCursos() {
         var funcion = "buscarCursos";
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = ``;
             objetos.forEach(objeto => {
@@ -584,7 +584,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('idCurso');
                 funcion = 'eliminar_curso';
-                $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
                     buscarCursos();
                 });
             } 
@@ -595,7 +595,7 @@ $(document).ready(function () {
         let medicamento = $('#txtNombreMed').val();
         let indicaciones = $('#txtIndicaciones').val();
         funcion = 'crear_medicamento';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, medicamento, indicaciones }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, medicamento, indicaciones }, (response) => {
             if (response == 'update') {
                 $('#divCreateMed').hide('slow');
                 $('#divCreateMed').show(1000);
@@ -615,7 +615,7 @@ $(document).ready(function () {
     $('#form_crear_enfermedad').submit(e => {
         let enfermedad = $('#txtNombreEnf').val();
         funcion = 'crear_enfermedad';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, enfermedad }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, enfermedad }, (response) => {
             if (response == 'update') {
                 $('#divCreateEnf').hide('slow');
                 $('#divCreateEnf').show(1000);
@@ -636,7 +636,7 @@ $(document).ready(function () {
         let tipo = $('#selTipoAlergia').val();
         let nombre = $('#txtNombreAlergia').val();
         funcion = 'crear_alergia';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, tipo, nombre }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, tipo, nombre }, (response) => {
             if (response == 'update') {
                 $('#divCreateAler').hide('slow');
                 $('#divCreateAler').show(1000);
@@ -656,7 +656,7 @@ $(document).ready(function () {
     $('#form_crear_cirugia').submit(e => {
         let nombre = $('#txtNombreCirugia').val();
         funcion = 'crear_cirugia';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, nombre }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, nombre }, (response) => {
             if (response == 'update') {
                 $('#divCreateCir').hide('slow');
                 $('#divCreateCir').show(1000);
@@ -678,7 +678,7 @@ $(document).ready(function () {
         let tipo = $('#selTipoLesion').val();
         let nombre = $('#txtNombreLesion').val();
         funcion = 'crear_lesion';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, tipo, nombre }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, tipo, nombre }, (response) => {
             if (response == 'update') {
                 $('#divCreateLes').hide('slow');
                 $('#divCreateLes').show(1000);
@@ -698,7 +698,7 @@ $(document).ready(function () {
     $('#form_crear_antecedente').submit(e => {
         let nombre = $('#selAntecedente').val();
         funcion = 'crear_antecedente';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, nombre }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, nombre }, (response) => {
             console.log(response);
             if (response == 'update') {
                 $('#divCreateAnt').hide('slow');
@@ -722,7 +722,7 @@ $(document).ready(function () {
         let descripcion = $('#txtCapDesc').val();
         let horas = $('#txtHoras').val();
         funcion = 'crear_curso';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, fecha, institucion, descripcion, horas }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, fecha, institucion, descripcion, horas }, (response) => {
             console.log(response);
             if (response == 'update') {
                 $('#divCreateCurso').hide('slow');
@@ -748,7 +748,7 @@ $(document).ready(function () {
         let pension = $('#txtPension').val();
         let caja_compensacion = $('#txtCaja').val();
         funcion = 'update_salud';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario, eps, carnet, tipo_sangre, arl, pension, caja_compensacion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario, eps, carnet, tipo_sangre, arl, pension, caja_compensacion }, (response) => {
             if (response == 'update') {
                 $('#divCreateSalud').hide('slow');
                 $('#divCreateSalud').show(1000);
@@ -770,7 +770,7 @@ $(document).ready(function () {
         formData.append("dato", "valor");
         var peticion = $('#form_crear_soporte').attr('action');
         $.ajax({
-            url: '../Controlador/usuario_controler.php',
+            url: '../../Controlador/usuario_controler.php',
             type: 'POST',
             data: formData,
             cache: false,
@@ -794,7 +794,7 @@ $(document).ready(function () {
 
     function buscarSoportes() {
         var funcion = "buscarSoportes";
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = ``;
             num = 0;
@@ -804,7 +804,7 @@ $(document).ready(function () {
                 <td>${num}</td>
                 <td>${objeto.tipo_soporte}</td>
                 <td>${objeto.nombre_soporte}</td>
-                <td><img src='../Recursos/img/soportes_usuario/${objeto.soporte}' style='width: 45%'></td>
+                <td><img src='../../Recursos/img/soportes_usuario/${objeto.soporte}' style='width: 45%'></td>
                 <td scope="row"><button class='delSoporte btn btn-sm btn-danger mr-1' type='button' title='Eliminar'>
                 <i class="fas fa-trash"></i>
                 </button></td>
@@ -826,7 +826,7 @@ $(document).ready(function () {
                 const id = $(elemento).attr('idSoporte');
                 const soporte = $(elemento).attr('soporte');
                 funcion = 'eliminar_soporte';
-                $.post('../Controlador/usuario_controler.php', { id, funcion, soporte }, (response) => {
+                $.post('../../Controlador/usuario_controler.php', { id, funcion, soporte }, (response) => {
                     buscarSoportes();
                 });                
             } 

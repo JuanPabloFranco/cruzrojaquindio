@@ -1,12 +1,12 @@
 <?php
 session_start();
 if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['permisos'][0]->eventos == 'Activo')) {
-    include_once '../Vista/layouts/header.php';
-    include_once '../Conexion/consulSQL.php';
+    include_once '../../Vista/layouts/header.php';
+    include_once '../../Conexion/consulSQL.php';
 ?>
     <title id="tituloPage"></title>
     <?php
-    include_once '../Vista/layouts/nav.php';
+    include_once '../../Vista/layouts/nav.php';
     ?>
     <!-- Modal -->
     <input type="hidden" id="txtId_usuario" value="<?php echo $_SESSION['id_user']; ?>">
@@ -14,7 +14,7 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['pe
     <input type="hidden" id="id_cargo" value="<?php echo $_SESSION['id_cargo']; ?>">
     <input type="hidden" id="id_region" value="<?php echo $_SESSION['id_region']; ?>">
     <input type="hidden" id="id_evento" value="<?php echo $_GET['id']; ?>">
-    <script src="../Recursos/js/evento.js"></script>
+    <script src="../../Recursos/js/evento.js"></script>
     <div class="modal fade" id="agregarFoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -185,8 +185,8 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['pe
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="../Vista/adm_panel.php">Inicio</a></li>
-                            <li class="breadcrumb-item active"><a href="../Vista/adm_eventos.php?modulo=evento">Gestión Eventos</a></li>
+                            <li class="breadcrumb-item"><a href="../../Vista/adm_panel.php">Inicio</a></li>
+                            <li class="breadcrumb-item active"><a href="../../Vista/adm_eventos.php?modulo=evento">Gestión Eventos</a></li>
                             <li class="breadcrumb-item" id="liTitulo"></li>
                         </ol>
                     </div>
@@ -317,7 +317,7 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['pe
                                 <p class='badge badge-dark' id="pCuposDisponibles"></p>
                             </div>
                             <div >
-                                <a href="javascript:imprSelec('divParticipantes')"><img src="../Recursos/img/pdf.png" style="width: 30px" style="height: 30px" title="Imprimir/Generar PDF">Imprimir</a>
+                                <a href="javascript:imprSelec('divParticipantes')"><img src="../../Recursos/img/pdf.png" style="width: 30px" style="height: 30px" title="Imprimir/Generar PDF">Imprimir</a>
                             </div>
                             <div class="card-body" id="divParticipantes">
 
@@ -340,8 +340,8 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['pe
     </script>
     <!-- /.content-wrapper -->
 <?php
-    include_once '../Vista/layouts/footer.php';
+    include_once '../../Vista/layouts/footer.php';
 } else {
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 }
 ?>

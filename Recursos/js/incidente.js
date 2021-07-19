@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     function buscar_avatar() {
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -39,7 +39,7 @@ $(document).ready(function () {
         let otros = $('#txtOtros').val();
         let observaciones = $('#txtObservaciones').val();
         funcion = 'crear_incidente';
-        $.post('../Controlador/incidente_controler.php', {
+        $.post('../../Controlador/incidente_controler.php', {
             funcion, id, id_region, fecha_creacion, fecha, hora, evento, tipo, departamento, municipio, direccion, cant_personal, personal,
             afectado, heridos, desaparecidos, muertos, lesionados, traslado, quien_traslado, viviendas_averiadas, viviendas_destruidas, familias_afectadas, otros, observaciones
         }, (response) => {
@@ -70,7 +70,7 @@ $(document).ready(function () {
 
     function buscarIncidentes(consulta) {
         var funcion = "buscarIncidentes";
-        $.post('../Controlador/incidente_controler.php', { consulta, funcion, id_cargo, id_region }, (response) => {
+        $.post('../../Controlador/incidente_controler.php', { consulta, funcion, id_cargo, id_region }, (response) => {
             const objetos = JSON.parse(response);
             if (objetos.length > 0) {
                 num = 0;
@@ -125,7 +125,7 @@ $(document).ready(function () {
                             <i class="fas fa-eye"></i>
                         </button>`;
                     }
-                    template += `                   <a href='../Vista/incidente_pdf.php?id=${objeto.id}&hoja=carta' target='_blank'><button class='btn btn-sm btn-warning ml-1' type='button' title='Exportar'>
+                    template += `                   <a href='../../Vista/incidente_pdf.php?id=${objeto.id}&hoja=carta' target='_blank'><button class='btn btn-sm btn-warning ml-1' type='button' title='Exportar'>
                                                         <i class="fas fa-file-pdf"></i></button></a>
                                                         </td>
                                                     </tr>`;
@@ -143,7 +143,7 @@ $(document).ready(function () {
         const id = $(elemento).attr('idIncidente');
         $('#txtIdIncidente').val(id);
         funcion = 'cargarIncidente';
-        $.post('../Controlador/incidente_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/incidente_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtFecha2').val(obj.fecha);
             $('#txtHora2').val(obj.hora);
@@ -174,7 +174,7 @@ $(document).ready(function () {
         const id = $(elemento).attr('idIncidente');
         $('#txtIdIncidente').val(id);
         funcion = 'cargarIncidente';
-        $.post('../Controlador/incidente_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/incidente_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#i_voluntario').html(obj.nombre_voluntario);
             $('#i_region').html(obj.nombre_region);
@@ -215,7 +215,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('idIncidente');
                 funcion = 'cambiar_estado';
-                $.post('../Controlador/incidente_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/incidente_controler.php', { id, funcion }, (response) => {
                     console.log(response)
                     if(response=='change'){
                         Swal.fire('Incidente verificado!', '', 'success');
@@ -254,7 +254,7 @@ $(document).ready(function () {
         let otros = $('#txtOtros2').val();
         let observaciones = $('#txtObservaciones2').val();
         funcion = 'editar_incidente';
-        $.post('../Controlador/incidente_controler.php', {
+        $.post('../../Controlador/incidente_controler.php', {
             funcion, id, fecha, hora, evento, tipo, departamento, municipio, direccion, cant_personal, personal,
             afectado, heridos, desaparecidos, muertos, lesionados, traslado, quien_traslado, viviendas_averiadas, viviendas_destruidas, familias_afectadas, otros, observaciones
         }, (response) => {

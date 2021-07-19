@@ -7,7 +7,8 @@ $(document).ready(function () {
     function buscar_avatar() {
         var id = $('#id_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+            console.log(response);
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -25,7 +26,7 @@ $(document).ready(function () {
 
     function buscarCargos(consulta) {
         var funcion = "buscar_cargo";
-        $.post('../Controlador/cargo_controler.php', { consulta, funcion }, (response) => {
+        $.post('../../Controlador/cargo_controler.php', { consulta, funcion }, (response) => {
             const objetos = JSON.parse(response);
             num = 0;
             let template = `<div class="col-md-12">
@@ -92,7 +93,7 @@ $(document).ready(function () {
         $('#checkConfiguracion2').attr('checked', true);
         $('#checkSedes2').attr('checked', true);
         $('#checkUsuarios2').attr('checked', true);
-        $.post('../Controlador/cargo_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/cargo_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtNombreCargo2').val(obj.nombre_cargo);
             $('#txtDescCargo2').val(obj.descripcion);
@@ -194,7 +195,7 @@ $(document).ready(function () {
             notas = 'Activo';
         }
         funcion = 'editar_cargo';
-        $.post('../Controlador/cargo_controler.php', {funcion, id, nombre_cargo, desc, cobertura, adm, sedes, servicios, galeria, esal, noticias, eventos, usuarios, msj_contacto, agenda, notas}, (response) => {
+        $.post('../../Controlador/cargo_controler.php', {funcion, id, nombre_cargo, desc, cobertura, adm, sedes, servicios, galeria, esal, noticias, eventos, usuarios, msj_contacto, agenda, notas}, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);
@@ -260,7 +261,7 @@ $(document).ready(function () {
             notas = 'Activo';
         }
         funcion = 'crear_cargo';
-        $.post('../Controlador/cargo_controler.php', {funcion, nombre_cargo, desc, cobertura, adm, sedes, servicios, galeria, esal, noticias, eventos, usuarios, msj_contacto, agenda, notas}, (response) => {
+        $.post('../../Controlador/cargo_controler.php', {funcion, nombre_cargo, desc, cobertura, adm, sedes, servicios, galeria, esal, noticias, eventos, usuarios, msj_contacto, agenda, notas}, (response) => {
             if (response == 'create') {
                 $('#createObj').hide('slow');
                 $('#createObj').show(1000);

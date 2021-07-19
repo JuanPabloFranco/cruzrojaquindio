@@ -1,15 +1,15 @@
 <?php
 session_start();
 if (isset($_SESSION['type_id'])) {
-    include_once '../Vista/layouts/header.php';
-    include_once '../Conexion/consulSQL.php';
+    include_once '../../Vista/layouts/header.php';
+    include_once '../../Conexion/consulSQL.php';
 ?>
 
     <title>Crear Reserva</title>
     <?php
-    include_once '../Vista/layouts/nav.php';
+    include_once '../../Vista/layouts/nav.php';
     ?>
-    <script src="../Recursos/js/gestion_reservas.js"></script>
+    <script src="../../Recursos/js/gestion_reservas.js"></script>
     <input type="hidden" id="id_usuario" value="<?php echo $_SESSION['id_user']; ?>">
     <input type="hidden" id="fecha_hoy" value="<?php echo date('Y-m-d'); ?>">
     <input type="hidden" id="txtPage" value="create">
@@ -185,8 +185,8 @@ if (isset($_SESSION['type_id'])) {
     </div>
     <!-- /.content-wrapper -->
 <?php
-    include_once '../Vista/layouts/footer.php';
+    include_once '../../Vista/layouts/footer.php';
 } else {
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 }
 ?>

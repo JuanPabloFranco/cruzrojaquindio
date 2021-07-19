@@ -169,7 +169,7 @@ if ($_POST['funcion'] == 'buscarAvatar') {
     $usuario->buscar_avatar($_POST['id']);
     foreach ($usuario->objetos as $objeto) {
         $json[] = array(
-            'avatar' => '../Recursos/img/avatars/' . $objeto->avatar
+            'avatar' => '../../Recursos/img/avatars/' . $objeto->avatar
         );
     }
     $jsonstring = json_encode($json[0]);

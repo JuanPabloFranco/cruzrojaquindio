@@ -10,7 +10,7 @@ $(document).ready(function () {
     function buscar_avatar() {
         var id = $('#txtId_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -23,7 +23,7 @@ $(document).ready(function () {
         let encabezado = $('#txtEncabezado').val();
         let texto = $('#txtDesarrollo').val();
         funcion = 'crear_noticia';
-        $.post('../Controlador/noticia_controler.php', { funcion, fecha, titulo, encabezado, texto, id_sede }, (response) => {
+        $.post('../../Controlador/noticia_controler.php', { funcion, fecha, titulo, encabezado, texto, id_sede }, (response) => {
             if (response == 'creado') {
                 $('#createObj').hide('slow');
                 $('#createObj').show(1000);
@@ -47,7 +47,7 @@ $(document).ready(function () {
         formData.append("dato", "valor");
         var peticion = $('#form_agregar_imagen').attr('action');
         $.ajax({
-            url: '../Controlador/noticia_controler.php',
+            url: '../../Controlador/noticia_controler.php',
             type: 'POST',
             data: formData,
             cache: false,
@@ -78,7 +78,7 @@ $(document).ready(function () {
         let encabezado = $('#txtEncabezado2').val();
         let texto = $('#txtDesarrollo2').val();
         funcion = 'editar_noticia';
-        $.post('../Controlador/noticia_controler.php', { funcion, id, fecha, titulo, encabezado, texto }, (response) => {
+        $.post('../../Controlador/noticia_controler.php', { funcion, id, fecha, titulo, encabezado, texto }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);
@@ -106,7 +106,7 @@ $(document).ready(function () {
 
     function buscarNoticias(consulta) {
         var funcion = "buscar_noticias";
-        $.post('../Controlador/noticia_controler.php', { consulta, funcion, id_sede }, (response) => {
+        $.post('../../Controlador/noticia_controler.php', { consulta, funcion, id_sede }, (response) => {
             const objetos = JSON.parse(response);
             let template = "";
             num = 0;
@@ -132,7 +132,7 @@ $(document).ready(function () {
                     <div class="row">
                       <div class="col-12">`;
                 if (obj.imagen != null && obj.imagen != "") {
-                    template += `<img class='' src='../Recursos/img/post/${obj.imagen}' style='width: 100%'>`;
+                    template += `<img class='' src='../../Recursos/img/post/${obj.imagen}' style='width: 100%'>`;
                 }
                 template += `<ul class="ml-4 mb-0 fa-ul text-muted">
                                 <li class="small"><span class="fa-li"></span><b>${obj.titulo}</b></li>                        
@@ -155,7 +155,7 @@ $(document).ready(function () {
         const id = $(elemento).attr('notiId');
         $('#txtId_noticia').val(id);
         funcion = 'cargar_noticia';
-        $.post('../Controlador/noticia_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/noticia_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtFecha2').val(obj.fecha);
             $('#txtTitulo2').val(obj.titulo);
@@ -169,7 +169,7 @@ $(document).ready(function () {
         const id = $(elemento).attr('notiId');
         $('#idNotiImg').val(id);
         funcion = 'cargar_noticia';
-        $.post('../Controlador/noticia_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/noticia_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             if (obj.imagen != null || obj.imagen != "") {
                 $('#imgNoti').attr('src', obj.imagen);
@@ -190,7 +190,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('notiId');
                 funcion = 'eliminar_imagen';
-                $.post('../Controlador/noticia_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/noticia_controler.php', { id, funcion }, (response) => {
                     Swal.fire('Eliminado!', '', 'success');
                     buscarNoticias();
                 });

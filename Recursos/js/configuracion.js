@@ -6,7 +6,7 @@ $(document).ready(function () {
     function buscar_avatar() {
         var id = $('#id_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -14,7 +14,7 @@ $(document).ready(function () {
 
     function cargarInformacion() {
         funcion = 'cargarInformacion';
-        $.post('../Controlador/configuracion_controler.php', { funcion }, (response) => {
+        $.post('../../Controlador/configuracion_controler.php', { funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtNombreEntidad').val(obj.nombre);
             $('#txtTexto1').val(obj.texto);
@@ -33,7 +33,7 @@ $(document).ready(function () {
         let mision = $('#txtMision').val();
         let vision = $('#txtVision').val();
         funcion = 'guardarDatosBasicos';
-        $.post('../Controlador/configuracion_controler.php', { funcion, nombre, texto, mision, vision }, (response) => {
+        $.post('../../Controlador/configuracion_controler.php', { funcion, nombre, texto, mision, vision }, (response) => {
             if (response == 'update') {
                 $('#save').hide('slow');
                 $('#save').show(1000);
@@ -51,7 +51,7 @@ $(document).ready(function () {
         let titulo = $('#txtTituloAlternativo').val();
         let texto2 = $('#txtAlternativo').val();
         funcion = 'guardarDatosAlternativos';
-        $.post('../Controlador/configuracion_controler.php', { funcion, titulo, texto2 }, (response) => {
+        $.post('../../Controlador/configuracion_controler.php', { funcion, titulo, texto2 }, (response) => {
             if (response == 'update') {
                 $('#saveA').hide('slow');
                 $('#saveA').show(1000);
@@ -73,7 +73,7 @@ $(document).ready(function () {
         formData.append("dato", "valor");
         var peticion = $('#form_crear_imagen1').attr('action');
         $.ajax({
-            url: '../Controlador/configuracion_controler.php',
+            url: '../../Controlador/configuracion_controler.php',
             type: 'POST',
             data: formData,
             cache: false,
@@ -102,7 +102,7 @@ $(document).ready(function () {
         formData.append("dato", "valor");
         var peticion = $('#form_crear_imagen2').attr('action');
         $.ajax({
-            url: '../Controlador/configuracion_controler.php',
+            url: '../../Controlador/configuracion_controler.php',
             type: 'POST',
             data: formData,
             cache: false,
@@ -132,7 +132,7 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 funcion = 'eliminarImagen1';
-                $.post('../Controlador/configuracion_controler.php', { funcion }, (response) => {
+                $.post('../../Controlador/configuracion_controler.php', { funcion }, (response) => {
                     if (response == 'update') {
                         Swal.fire('Eliminado!', '', 'success');
                         cargarInformacion();
@@ -152,7 +152,7 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 funcion = 'eliminarImagen2';
-                $.post('../Controlador/configuracion_controler.php', { funcion }, (response) => {
+                $.post('../../Controlador/configuracion_controler.php', { funcion }, (response) => {
                     if (response == 'update') {
                         Swal.fire('Eliminado!', '', 'success');
                         cargarInformacion();

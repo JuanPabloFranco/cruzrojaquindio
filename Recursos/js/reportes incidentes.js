@@ -14,7 +14,7 @@ $(document).ready(function () {
     function buscar_avatar() {
         var id = $('#txtId_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -30,7 +30,7 @@ $(document).ready(function () {
     function cargarEstadisticas() {
         var id = $('#id_usuario').val();
         funcion = 'estadisticas';
-        $.post('../Controlador/incidente_controler.php', { funcion, id_cargo, id_region }, (response) => {
+        $.post('../../Controlador/incidente_controler.php', { funcion, id_cargo, id_region }, (response) => {
             const obj = JSON.parse(response);
             $('#spanRegistrados').html(obj.registrados);
             $('#spanNuevos').html(obj.nuevos);
@@ -48,7 +48,7 @@ $(document).ready(function () {
 
     function estadisticasRegiones(consulta) {
         var funcion = "estadisticasRegiones";
-        $.post('../Controlador/incidente_controler.php', { consulta, funcion }, (response) => {
+        $.post('../../Controlador/incidente_controler.php', { consulta, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = "";
             objetos.forEach(obj => {

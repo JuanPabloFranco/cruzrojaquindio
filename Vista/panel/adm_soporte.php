@@ -1,14 +1,14 @@
 <?php
 session_start();
 if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id_cargo'] >= 0)) {
-    include_once '../Vista/layouts/header.php'
+    include_once '../../Vista/layouts/header.php'
 ?>
     <title>Adm | Soporte FeseSystem</title>
     <?php
-    include_once '../Vista/layouts/nav.php';
+    include_once '../../Vista/layouts/nav.php';
     ?>
     <!-- Modal -->
-    <script src="../Recursos/js/soporte_tecnico.js"></script>
+    <script src="../../Recursos/js/soporte_tecnico.js"></script>
     <input type="hidden" id="txtTipoUsuario" value="<?php echo $_SESSION['type_id']; ?>">
     <input type="hidden" id="id_cargo" value="<?php echo $_SESSION['id_cargo']; ?>">
     <input type="hidden" id="id_region" value="<?php echo $_SESSION['id_region']; ?>">    
@@ -164,13 +164,13 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
                             }
                             ?>
                             <a href="https://api.whatsapp.com/send?phone=+573136464151&amp;text=Hola, puedes ayudarme" target="_blank">
-                                <img src="../Recursos/img/whatsapp_icon.png" alt="" width="30">
+                                <img src="../../Recursos/img/whatsapp_icon.png" alt="" width="30">
                             </a>
                         </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="../Vista/adm_panel.php">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="../../Vista/adm_panel.php">Inicio</a></li>
                             <li class="breadcrumb-item active">Soporte FeseSystem</li>
                         </ol>
                     </div>
@@ -200,8 +200,8 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
     </div>
     <!-- /.content-wrapper -->
 <?php
-    include_once '../Vista/layouts/footer.php';
+    include_once '../../Vista/layouts/footer.php';
 } else {
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 }
 ?>

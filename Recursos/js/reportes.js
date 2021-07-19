@@ -187,7 +187,7 @@ $(document).ready(function () {
     function buscar_avatar() {
         var id = $('#txtId_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -196,7 +196,7 @@ $(document).ready(function () {
 
     $('#tablaUsuarios').DataTable({
         "ajax": {
-            "url": "../Controlador/usuario_controler.php",
+            "url": "../../Controlador/usuario_controler.php",
             "method": "POST",
             "data": { funcion: funcion, id_cargo: id_cargo, id_sede: id_sede, id_tipo: id_tipo }
         },
@@ -227,7 +227,7 @@ $(document).ready(function () {
     function cargarEstadisticas() {
         var id = $('#id_usuario').val();
         funcion = 'estadisticas';
-        $.post('../Controlador/usuario_controler.php', { funcion, id_cargo, id_sede }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_cargo, id_sede }, (response) => {
             const obj = JSON.parse(response);
             $('#h3Registrados').html(obj.registrados);
             $('#h3Activos').html(obj.activos);

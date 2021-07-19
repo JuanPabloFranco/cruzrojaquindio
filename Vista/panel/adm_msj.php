@@ -1,14 +1,14 @@
 <?php
 session_start();
 if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['permisos'][0]->msj_contacto == 'Activo')) {
-    include_once '../Vista/layouts/header.php'
+    include_once '../../Vista/layouts/header.php'
 ?>
     <title>Adm | Mensajes de Contacto</title>
     <?php
-    include_once '../Vista/layouts/nav.php';
+    include_once '../../Vista/layouts/nav.php';
     ?>
     <!-- Modal -->
-    <script src="../Recursos/js/contactanos.js"></script>
+    <script src="../../Recursos/js/contactanos.js"></script>
     <input type="hidden" id="id_usuario" value="<?php echo $_SESSION['id_user']; ?>">
     <input type="hidden" id="txtTipoUsuario" value="<?php echo $_SESSION['type_id']; ?>">
     <input type="hidden" id="id_cargo" value="<?php echo $_SESSION['id_cargo']; ?>">
@@ -73,7 +73,7 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['pe
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="../Vista/adm_panel.php">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="../../Vista/adm_panel.php">Inicio</a></li>
                             <li class="breadcrumb-item active">Mensajes de Contacto</li>
                         </ol>
                     </div>
@@ -103,8 +103,8 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['pe
     </div>
     <!-- /.content-wrapper -->
 <?php
-    include_once '../Vista/layouts/footer.php';
+    include_once '../../Vista/layouts/footer.php';
 } else {
-    header('Location: ../Vista/404.php');
+    header('Location: ../../Vista/404.php');
 }
 ?>

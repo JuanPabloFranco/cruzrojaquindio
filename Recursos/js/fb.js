@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     function cargar_fb() {
         funcion = 'cargarFb';
-        $.post('Controlador/region_controler.php', { funcion, id_region }, (response) => {
+        $.post('../../Controlador/region_controler.php', { funcion, id_region }, (response) => {
             const obj = JSON.parse(response);
             let template = `<div id="fb-root"></div>
             <br><br>

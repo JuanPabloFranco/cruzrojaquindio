@@ -7,7 +7,7 @@ $(document).ready(function() {
     function buscar_avatar() {
         var id = $('#id_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -27,7 +27,7 @@ $(document).ready(function() {
         let twitter = $('#txtTwitterSede').val();
         let youtube = $('#txtYoutubeSede').val();
         funcion = 'crear_sede';
-        $.post('../Controlador/sede_controler.php', { funcion, nombre, ciudad, direccion, telefono, email, wp, nit, fb, instagram, twitter, youtube }, (response) => {
+        $.post('../../Controlador/sede_controler.php', { funcion, nombre, ciudad, direccion, telefono, email, wp, nit, fb, instagram, twitter, youtube }, (response) => {
             if (response == 'creada') {
                 $('#divCreate').hide('slow');
                 $('#divCreate').show(1000);
@@ -55,7 +55,7 @@ $(document).ready(function() {
 
     function buscarSedes(consulta) {
         var funcion = "buscar_sedes";
-        $.post('../Controlador/sede_controler.php', { consulta, funcion }, (response) => {
+        $.post('../../Controlador/sede_controler.php', { consulta, funcion }, (response) => {
             const objetos = JSON.parse(response);
             let template = "";
             objetos.forEach(obj => {
@@ -81,27 +81,27 @@ $(document).ready(function() {
                         </ul>`;
                 if (obj.wp_sede != null && obj.wp_sede != '') {
                     template += `<a href="https://api.whatsapp.com/send?phone=+57${obj.wp_sede}&amp;text=Hola, me interesaría obtener información" target="_blank">
-                            <img src="../Recursos/img/whatsapp_icon.png" alt="" width="30px">
+                            <img src="../../Recursos/img/whatsapp_icon.png" alt="" width="30px">
                         </a>`;
                 }
                 if (obj.facebook != null && obj.facebook != '') {
                     template += `<a href="${obj.facebook}" target="_blank">
-                            <img src="../Recursos/img/facebook_icon.png" alt="" width="30px">
+                            <img src="../../Recursos/img/facebook_icon.png" alt="" width="30px">
                         </a>`;
                 }
                 if (obj.instagram != null && obj.instagram != '') {
                     template += `<a href="${obj.instagram}" target="_blank">
-                            <img src="../Recursos/img/instagram_icon.png" alt="" width="30px">
+                            <img src="../../Recursos/img/instagram_icon.png" alt="" width="30px">
                         </a>`;
                 }
                 if (obj.twitter != null && obj.twitter != '') {
                     template += `<a href="${obj.twitter}" target="_blank">
-                            <img src="../Recursos/img/twitter_icon.png" alt="" width="30px">
+                            <img src="../../Recursos/img/twitter_icon.png" alt="" width="30px">
                         </a>`;
                 }
                 if (obj.youtube != null && obj.youtube != '') {
                     template += `<a href="${obj.youtube}" target="_blank">
-                            <img src="../Recursos/img/youtube_icon.png" alt="" width="30px">
+                            <img src="../../Recursos/img/youtube_icon.png" alt="" width="30px">
                         </a>`;
                 }
                 template += ` </div>
@@ -138,7 +138,7 @@ $(document).ready(function() {
         const id = $(elemento).attr('sedeId');
         $('#txtId_sedeEd').val(id);
         funcion = 'cargarSede';
-        $.post('../Controlador/sede_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/sede_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtNombreSede2').val(obj.nombre_sede);
             $('#txtCiudadSede2').val(obj.ciudad_sede);
@@ -158,7 +158,7 @@ $(document).ready(function() {
         const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
         const id = $(elemento).attr('sedeId');
         funcion = 'changeEstadoSede';
-        $.post('../Controlador/sede_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/sede_controler.php', { id, funcion }, (response) => {
             buscarSedes();
         });
     });
@@ -177,7 +177,7 @@ $(document).ready(function() {
         let twitter = $('#txtTwitterSede2').val();
         let youtube = $('#txtYoutubeSede2').val();
         funcion = 'editar_sede';
-        $.post('../Controlador/sede_controler.php', { funcion, id, nombre, ciudad, direccion, telefono, email, wp, nit, fb, instagram, twitter, youtube }, (response) => {
+        $.post('../../Controlador/sede_controler.php', { funcion, id, nombre, ciudad, direccion, telefono, email, wp, nit, fb, instagram, twitter, youtube }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);

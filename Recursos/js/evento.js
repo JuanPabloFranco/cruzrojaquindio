@@ -10,7 +10,7 @@ $(document).ready(function () {
     buscarFotos();
     function buscar_avatar() {
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     function cargarEvento() {
         funcion = 'cargarEvento';
-        $.post('../Controlador/evento_controler.php', { id_evento, funcion }, (response) => {
+        $.post('../../Controlador/evento_controler.php', { id_evento, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#tituloPage').html(obj.nombre_evento);
             $('#h1Titulo').html(obj.nombre_evento);
@@ -46,7 +46,7 @@ $(document).ready(function () {
         const elemento = $(this)[0].activeElement;
         const id = $(elemento).attr('badgeIdEv');
         funcion = 'changeEstadoEvento';
-        $.post('../Controlador/evento_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/evento_controler.php', { id, funcion }, (response) => {
             cargarEvento();
         });
     });
@@ -61,7 +61,7 @@ $(document).ready(function () {
         let id_servicio = $('#selServicioE').val();
         let descripcion_evento = $('#txtDescEvE').val();
         funcion = "editar_evento";
-        $.post('../Controlador/evento_controler.php', { id_evento, funcion, nombre_evento, fecha_inicial, fecha_final, total_cupos, tel_contacto, precio, id_servicio, descripcion_evento }, (response) => {
+        $.post('../../Controlador/evento_controler.php', { id_evento, funcion, nombre_evento, fecha_inicial, fecha_final, total_cupos, tel_contacto, precio, id_servicio, descripcion_evento }, (response) => {
             if (response == 'update') {
                 $('#divUpdate').hide('slow');
                 $('#divUpdate').show(1000);
@@ -84,7 +84,7 @@ $(document).ready(function () {
         formData.append("dato", "valor");
         var peticion = $('#form_edit_image_evento').attr('action');
         $.ajax({
-            url: '../Controlador/evento_controler.php',
+            url: '../../Controlador/evento_controler.php',
             type: 'POST',
             data: formData,
             cache: false,
@@ -112,7 +112,7 @@ $(document).ready(function () {
         formData.append("dato", "valor");
         var peticion = $('#form_agregar_foto').attr('action');
         $.ajax({
-            url: '../Controlador/fotoEvento_controler.php',
+            url: '../../Controlador/fotoEvento_controler.php',
             type: 'POST',
             data: formData,
             cache: false,
@@ -136,7 +136,7 @@ $(document).ready(function () {
 
     function buscarFotos(consulta) {
         var funcion = "buscar_foto_evento";
-        $.post('../Controlador/fotoEvento_controler.php', { consulta, funcion, id_evento }, (response) => {
+        $.post('../../Controlador/fotoEvento_controler.php', { consulta, funcion, id_evento }, (response) => {
             const objetos = JSON.parse(response);
             let template = "";
             num = 0;
@@ -176,7 +176,7 @@ $(document).ready(function () {
         const id = $(elemento).attr('fotoId');
         $('#txtIdFoto').val(id);
         funcion = 'cargarFotoEvento';
-        $.post('../Controlador/fotoEvento_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/fotoEvento_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtDescFotoEd').val(obj.descripcion);
             $('#imgFotoEd').attr('src', obj.archivo);
@@ -188,7 +188,7 @@ $(document).ready(function () {
         let id = $('#txtIdFoto').val();
         let descripcion = $('#txtDescFotoEd').val();
         funcion = 'editar_foto_evento';
-        $.post('../Controlador/fotoEvento_controler.php', { funcion, id, descripcion }, (response) => {
+        $.post('../../Controlador/fotoEvento_controler.php', { funcion, id, descripcion }, (response) => {
             if (response == 'update') {
                 $('#divUpdateImg').hide('slow');
                 $('#divUpdateImg').show(1000);
@@ -214,7 +214,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('fotoId');
                 funcion = 'eliminarFoto';
-                $.post('../Controlador/fotoEvento_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/fotoEvento_controler.php', { id, funcion }, (response) => {
                     Swal.fire('Eliminado!', '', 'success');
                     buscarFotos();
                 });
@@ -226,7 +226,7 @@ $(document).ready(function () {
 
     function listarParticipantes(consulta) {
         var funcion = "listar_participantes";
-        $.post('../Controlador/participante_evento_controler.php', { consulta, funcion, id_evento }, (response) => {
+        $.post('../../Controlador/participante_evento_controler.php', { consulta, funcion, id_evento }, (response) => {
             const objetos = JSON.parse(response);
             num = 0;
             let template = `<table class="table table-bordered table-responsive center-all">
@@ -276,7 +276,7 @@ $(document).ready(function () {
         const id_participante = $(elemento).attr('idPart');
         funcion = 'cargar_participante';
         $('#txtIdParticipante').val(id_participante);
-        $.post('../Controlador/participante_evento_controler.php', { id_participante, funcion }, (response) => {
+        $.post('../../Controlador/participante_evento_controler.php', { id_participante, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#pNombreParticipante').html(obj.nombre_participante);
             $('#pDocumento').html(obj.tipo_doc + " " + obj.documento);
@@ -297,7 +297,7 @@ $(document).ready(function () {
         let id = $('#txtIdParticipante').val();
         let estado = $('#selEstadoParticipante').val();
         funcion = 'changeEstadoParticipante';
-        $.post('../Controlador/participante_evento_controler.php', { funcion, id, estado, id_evento }, (response) => {
+        $.post('../../Controlador/participante_evento_controler.php', { funcion, id, estado, id_evento }, (response) => {
             if (response == 'update') {
                 $('#divUpdatePart').hide('slow');
                 $('#divUpdatePart').show(1000);

@@ -1,15 +1,15 @@
 <?php
 session_start();
 if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id_cargo'] >= 2)) {
-    include_once '../Vista/layouts/header.php';
-    include_once '../Conexion/consulSQL.php';
+    include_once '../../Vista/layouts/header.php';
+    include_once '../../Conexion/consulSQL.php';
 ?>
     <title>Adm | Administrar Usuarios</title>
     <?php
-    include_once '../Vista/layouts/nav.php';
+    include_once '../../Vista/layouts/nav.php';
     ?>
     <!-- Modal -->
-    <script src="../Recursos/js/gestion_usuario.js"></script>
+    <script src="../../Recursos/js/gestion_usuario.js"></script>
 
     <?php
     if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id_cargo'] == 1 || $_SESSION['id_cargo'] == 2 || $_SESSION['id_cargo'] == 8)) {
@@ -240,7 +240,7 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="../Vista/adm_catalogo.php">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="../../Vista/adm_catalogo.php">Inicio</a></li>
                             <li class="breadcrumb-item active">Gestión Usuarios</li>
                         </ol>
                     </div>
@@ -270,8 +270,8 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
     </div>
     <!-- /.content-wrapper -->
 <?php
-    include_once '../Vista/layouts/footer.php';
+    include_once '../../Vista/layouts/footer.php';
 } else {
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 }
 ?>

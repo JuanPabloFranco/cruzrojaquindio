@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     function buscar_avatar(id) {
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     function buscar_general(dato) {
         funcion = 'buscar_datos_general';
-        $.post('../Controlador/usuario_controler.php', { dato, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { dato, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#genero').html(obj.genero);
             $('#edad_usuario').html(obj.edad_usuario);
@@ -40,7 +40,7 @@ $(document).ready(function() {
     $(document).on('click', '.edit', (e) => {
         funcion = 'llenar_datos';
         edit = true;
-        $.post('../Controlador/usuario_controler.php', { funcion, id_usuario }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { funcion, id_usuario }, (response) => {
             const usuario = JSON.parse(response);
             $('#txtNombreCompleto').val(String(usuario.nombre_completo));
             $('#txtDoc_id').val(String(usuario.doc_id));
@@ -74,7 +74,7 @@ $(document).ready(function() {
             let fb = $('#txtFb').val();
             let instagram = $('#txtInstagram').val();
             funcion = 'editar_general';
-            $.post('../Controlador/usuario_controler.php', { id_usuario, funcion, nombre, doc_id, fecha_nac, lugarNac, telefono, celular, direccion, email, inf_usuario, twitter, fb, instagram, genero }, (response) => {
+            $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion, nombre, doc_id, fecha_nac, lugarNac, telefono, celular, direccion, email, inf_usuario, twitter, fb, instagram, genero }, (response) => {
                 if (response == 'editado') {
                     $('#editado').hide('slow');
                     $('#editado').show(1000);
@@ -99,7 +99,7 @@ $(document).ready(function() {
         let oldpass = $('#oldPass').val();
         let newpass = $('#newPass').val();
         funcion = "changePass";
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion, nameUser, oldpass, newpass }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion, nameUser, oldpass, newpass }, (response) => {
             if (response == 'update') {
                 $('#update').hide('slow');
                 $('#update').show(1000);
@@ -118,7 +118,7 @@ $(document).ready(function() {
     $('#form_avatar').submit(e => {
         let formData = new FormData($('#form_avatar')[0]);
         $.ajax({
-            url: '../Controlador/usuario_controler.php',
+            url: '../../Controlador/usuario_controler.php',
             type: 'POST',
             data: formData,
             cache: false,

@@ -24,7 +24,7 @@ $(document).ready(function() {
 
     function buscar_avatar(id) {
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -42,7 +42,7 @@ $(document).ready(function() {
     function buscarGestionUsuarios(consulta) {
         
         var funcion = "buscar_visitantes";
-        $.post('../Controlador/usuario_controler.php', { consulta, funcion}, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { consulta, funcion}, (response) => {
             const usuarios = JSON.parse(response);
             let template = "";
             usuarios.forEach(usuario => {
@@ -76,7 +76,7 @@ $(document).ready(function() {
                         </ul>`;
                 if (usuario.cel_usuario != null && usuario.cel_usuario != '') {
                     template += `<a href="https://api.whatsapp.com/send?phone=+57${usuario.cel_usuario}&amp;text=Hola, quiero dejarte una información" target="_blank">
-                                    <img src="../Recursos/img/whatsapp_icon.png" alt="" width="30px">
+                                    <img src="../../Recursos/img/whatsapp_icon.png" alt="" width="30px">
                                 </a>`;
                 }
 
@@ -112,7 +112,7 @@ $(document).ready(function() {
                     }
                 }
                 if ((id_cargo != 1) || (tipo_usuario <= 2)) {
-                    template += `<a href='../Vista/historial_visitante_pdf.php?id=${usuario.id}&hoja=carta' target='_blank'><button class='btn btn-sm btn-warning ml-1' type='button' title='Exportar'>
+                    template += `<a href='../../Vista/historial_visitante_pdf.php?id=${usuario.id}&hoja=carta' target='_blank'><button class='btn btn-sm btn-warning ml-1' type='button' title='Exportar'>
                         <i class="fas fa-file-pdf"></i> PDF
                     </button></a>`;
                 }
@@ -140,7 +140,7 @@ $(document).ready(function() {
             id_municipio = 1127;
         }
         funcion = 'crear_usuario';
-        $.post('../Controlador/usuario_controler.php', { id_usuario, funcion, nombre, documento, cel_usuario, email_usuario, id_nacionalidad, id_municipio, id_cargo, id_tipo_usuario }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id_usuario, funcion, nombre, documento, cel_usuario, email_usuario, id_nacionalidad, id_municipio, id_cargo, id_tipo_usuario }, (response) => {
             console.log(response);
             if (response == 'agregado') {
                 $('#create').hide('slow');
@@ -178,7 +178,7 @@ $(document).ready(function() {
         const id = $(elemento).attr('usuarioId');
         $('#txtIdCc').val(id);
         funcion = 'cargarCc';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtDoc2').val(obj.doc_id);
             $('#txtRegionEd').val(obj.id_region);
@@ -190,7 +190,7 @@ $(document).ready(function() {
         funcion = $('#txtFuncionConfirm').val();
         let pass = $('#txtPass').val();
         let estado = $('#txtEstadoConfirm').val();
-        $.post('../Controlador/usuario_controler.php', { id, funcion, pass, estado }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion, pass, estado }, (response) => {
             if (response == 'ascendido' || response == 'descendido' || response == 'actualizado' || response == 'exito') {
                 buscarGestionUsuarios();
                 $('#updateAsc').hide('slow');
@@ -213,7 +213,7 @@ $(document).ready(function() {
         let doc = $('#txtDoc2').val();
         let id_sede = $('#txtSedeEd').val();
         let id_cargo = $('#selCargoEd').val();
-        $.post('../Controlador/usuario_controler.php', { id, funcion, doc, id_sede, id_cargo }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion, doc, id_sede, id_cargo }, (response) => {
             if (response == 'update') {
                 buscarGestionUsuarios();
                 $('#updateCc').hide('slow');

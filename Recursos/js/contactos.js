@@ -10,7 +10,7 @@ $(document).ready(function() {
     function buscar_avatar() {
         var id = $('#id_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -29,7 +29,7 @@ $(document).ready(function() {
         let web = $('#txtWebCtog').val();
         let notas = $('#txtNotasCto').val();
         funcion = 'crear_contacto';
-        $.post('../Controlador/contacto_controler.php', { funcion, id_sede_create, tipo, nombre, tel, email, dir, municipio, depto, web, notas }, (response) => {
+        $.post('../../Controlador/contacto_controler.php', { funcion, id_sede_create, tipo, nombre, tel, email, dir, municipio, depto, web, notas }, (response) => {
             if (response == 'creado') {
                 $('#divCreate').hide('slow');
                 $('#divCreate').show(1000);
@@ -57,11 +57,11 @@ $(document).ready(function() {
 
     function buscarContactos(consulta) {
         var funcion = "buscar_contacto";
-        $.post('../Controlador/contacto_controler.php', { consulta, funcion, id_sede, cobertura }, (response) => {
+        $.post('../../Controlador/contacto_controler.php', { consulta, funcion, id_sede, cobertura }, (response) => {
             const objetos = JSON.parse(response);
             let template = "";
             objetos.forEach(obj => {
-                $('#logoCtoEd').attr('src', '../Recursos/img/contacto/' + obj.logo_cto);
+                $('#logoCtoEd').attr('src', '../../Recursos/img/contacto/' + obj.logo_cto);
                 template += `<div contactoId="${obj.id}" class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                 <div class="card bg-light">
                   <div class="card-header text-muted border-bottom-0">
@@ -81,7 +81,7 @@ $(document).ready(function() {
                         </ul>
                       </div>
                       <div class="col-5 text-center">
-                        <img src="../Recursos/img/contacto/${obj.logo_cto}" alt="" class="img-circle img-fluid" style='width: 80%'>
+                        <img src="../../Recursos/img/contacto/${obj.logo_cto}" alt="" class="img-circle img-fluid" style='width: 80%'>
                       </div>
                     </div>
                   </div>
@@ -114,7 +114,7 @@ $(document).ready(function() {
         const id = $(elemento).attr('contactoId');
         $('#txtId_ctoEd').val(id);
         funcion = 'cargarContacto';
-        $.post('../Controlador/contacto_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/contacto_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#selTipoCto2').val(obj.tipo_cto);
             $('#txtNombreCto2').val(obj.nombre_cto);
@@ -133,9 +133,9 @@ $(document).ready(function() {
         const id = $(elemento).attr('contactoId');
         $('#txtIdCtoImg').val(id);
         funcion = 'cargarLogo';
-        $.post('../Controlador/contacto_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/contacto_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
-            $('#logoCtoEd').attr('src', '../Recursos/img/contacto/' + obj.logo_cto);
+            $('#logoCtoEd').attr('src', '../../Recursos/img/contacto/' + obj.logo_cto);
             $('#NombreContactoImg').html(obj.nombre_cto);
         });
     });
@@ -151,7 +151,7 @@ $(document).ready(function() {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('contactoId');
                 funcion = 'eliminar_contacto';
-                $.post('../Controlador/contacto_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/contacto_controler.php', { id, funcion }, (response) => {
                     Swal.fire('Eliminado!', '', 'success');
                     buscarContactos();
                 });
@@ -173,7 +173,7 @@ $(document).ready(function() {
         let web = $('#txtWebCtog2').val();
         let notas = $('#txtNotasCto2').val();
         funcion = 'editar_contacto';
-        $.post('../Controlador/contacto_controler.php', { funcion, id, tipo, nombre, tel, email, dir, municipio, depto, web, notas }, (response) => {
+        $.post('../../Controlador/contacto_controler.php', { funcion, id, tipo, nombre, tel, email, dir, municipio, depto, web, notas }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);
@@ -192,7 +192,7 @@ $(document).ready(function() {
     $('#form_logoCto').submit(e => {
         let formData = new FormData($('#form_logoCto')[0]);
         $.ajax({
-            url: '../Controlador/contacto_controler.php',
+            url: '../../Controlador/contacto_controler.php',
             type: 'POST',
             data: formData,
             cache: false,

@@ -38,7 +38,7 @@ $(document).ready(function () {
     function buscar_avatar() {
         var id = $('#txtId_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -51,7 +51,7 @@ $(document).ready(function () {
         formData.append("dato", "valor");
         var peticion = $('#form_crear_esal').attr('action');
         $.ajax({
-            url: '../Controlador/esal_controler.php',
+            url: '../../Controlador/esal_controler.php',
             type: 'POST',
             data: formData,
             cache: false,
@@ -85,7 +85,7 @@ $(document).ready(function () {
     function buscarArchivos(consulta) {
         var funcion = "buscar_archivos";
         let id = $('#id_sede').val();
-        $.post('../Controlador/esal_controler.php', { consulta, funcion, id }, (response) => {
+        $.post('../../Controlador/esal_controler.php', { consulta, funcion, id }, (response) => {
             const objetos = JSON.parse(response);
             let template = "";
             num = 0;
@@ -107,7 +107,7 @@ $(document).ready(function () {
                   <div class="card-body pt-0">
                     <div class="row">
                         <div class="col-3">
-                            <a href='../Recursos/esal/${obj.archivo}' target='_blank'><img src='../Recursos/img/pdf.png' style='width: 100%'></a>
+                            <a href='../../Recursos/esal/${obj.archivo}' target='_blank'><img src='../../Recursos/img/pdf.png' style='width: 100%'></a>
                         </div>
                         <div class="col-9">
                             <h6 class='text-muted'>${obj.nombre}</h6>  
@@ -126,7 +126,7 @@ $(document).ready(function () {
         const id = $(elemento).attr('esalId');
         $('#txtId_esalEd').val(id);
         funcion = 'cargarEsal';
-        $.post('../Controlador/esal_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/esal_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtNombreArchivo2').val(obj.nombre);
             $('#selAñoEsal2').val(obj.ano);
@@ -146,7 +146,7 @@ $(document).ready(function () {
                 const id = $(elemento).attr('esalId');
                 $('#txtId_esalEd').val(id);
                 funcion = 'eliminarEsal';
-                $.post('../Controlador/esal_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/esal_controler.php', { id, funcion }, (response) => {
                     Swal.fire('Eliminado!', '', 'success');
                     buscarArchivos();
                 });
@@ -161,7 +161,7 @@ $(document).ready(function () {
         let nombre = $('#txtNombreArchivo2').val();
         let ano = $('#selAñoEsal2').val();
         funcion = 'editar_esal';
-        $.post('../Controlador/esal_controler.php', { funcion, id, nombre, ano }, (response) => {
+        $.post('../../Controlador/esal_controler.php', { funcion, id, nombre, ano }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);

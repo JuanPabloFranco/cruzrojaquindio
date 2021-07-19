@@ -1,14 +1,14 @@
 <?php
 session_start();
 if (isset($_SESSION['type_id']) && $_SESSION['type_id'] <= 2 || ($_SESSION['permisos'][0]->servicios == 'Activo')) {
-    include_once '../Vista/layouts/header.php'
+    include_once '../../Vista/layouts/header.php'
 ?>
     <title>Adm | Servicios</title>
     <?php
-    include_once '../Vista/layouts/nav.php';
+    include_once '../../Vista/layouts/nav.php';
     ?>
     <!-- Modal -->
-    <script src="../Recursos/js/servicios.js"></script>
+    <script src="../../Recursos/js/servicios.js"></script>
     <input type="hidden" id="id_usuario" value="<?php echo $_SESSION['id_user']; ?>">
     <input type="hidden" id="txtTipoUsuario" value="<?php echo $_SESSION['type_id']; ?>">
     <div class="modal fade" id="crearServicio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -144,7 +144,7 @@ if (isset($_SESSION['type_id']) && $_SESSION['type_id'] <= 2 || ($_SESSION['perm
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="../Vista/adm_panel.php">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="../../Vista/adm_panel.php">Inicio</a></li>
                             <li class="breadcrumb-item active">Gestión Servicios</li>
                         </ol>
                     </div>
@@ -174,8 +174,8 @@ if (isset($_SESSION['type_id']) && $_SESSION['type_id'] <= 2 || ($_SESSION['perm
     </div>
     <!-- /.content-wrapper -->
 <?php
-    include_once '../Vista/layouts/footer.php';
+    include_once '../../Vista/layouts/footer.php';
 } else {
-    header('Location: ../Vista/404.php');
+    header('Location: ../../Vista/404.php');
 }
 ?>

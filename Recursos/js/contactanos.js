@@ -7,7 +7,7 @@ $(document).ready(function () {
     function buscar_avatar() {
         var id = $('#id_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -69,7 +69,7 @@ $(document).ready(function () {
 
     function buscarMsj(consulta) {
         var funcion = "buscar_msj";
-        $.post('../Controlador/msjContacto_controler.php', { consulta, funcion, id_sede }, (response) => {
+        $.post('../../Controlador/msjContacto_controler.php', { consulta, funcion, id_sede }, (response) => {
             const objetos = JSON.parse(response);
             let template = "";
             objetos.forEach(obj => {
@@ -140,7 +140,7 @@ $(document).ready(function () {
         const elemento = $(this)[0].activeElement.parentElement;
         const id = $(elemento).attr('msjid');
         funcion = 'cargarMsj';
-        $.post('../Controlador/msjContacto_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/msjContacto_controler.php', { id, funcion }, (response) => {
             const objetos = JSON.parse(response);
             $('#spanNombre').html(objetos.nombre);
             $('#pFechaMsj').html("<b>Fecha:</b> " + objetos.fecha);
@@ -159,7 +159,7 @@ $(document).ready(function () {
     $(document).on('click', '.visto', (e) => {
         let id = $('#idMsjVisto').val();
         funcion = 'changeVisto';
-        $.post('../Controlador/msjContacto_controler.php', { funcion, id }, (response) => {
+        $.post('../../Controlador/msjContacto_controler.php', { funcion, id }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);
@@ -178,7 +178,7 @@ $(document).ready(function () {
     $(document).on('click', '.respon', (e) => {
         let id = $('#idMsjVisto').val();
         funcion = 'changeRes';
-        $.post('../Controlador/msjContacto_controler.php', { funcion, id }, (response) => {
+        $.post('../../Controlador/msjContacto_controler.php', { funcion, id }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);
@@ -199,7 +199,7 @@ $(document).ready(function () {
         let nombre = $('#txtNombreReg2').val();
         let ciudad = $('#txtCiudadReg2').val();
         funcion = 'editar_region';
-        $.post('../Controlador/msjContacto_controler.php', { funcion, id, nombre, ciudad, direccion, telefono, email, wp, nit, fb, instagram, twitter, youtube }, (response) => {
+        $.post('../../Controlador/msjContacto_controler.php', { funcion, id, nombre, ciudad, direccion, telefono, email, wp, nit, fb, instagram, twitter, youtube }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);

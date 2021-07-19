@@ -15,7 +15,7 @@ $(document).ready(function () {
         let municipio_res = $('#txtMunicipio').val();
         let eps = $('#txtEps').val();
         funcion = "inscribir_participante";
-        $.post('Controlador/participante_evento_controler.php', { funcion, id_evento, nombre_participante, tipo_doc, documento, fec_nac_part, telefono, email, tipo_sangre, nacionalidad, departamento_res, municipio_res, eps }, (response) => {            
+        $.post('../../Controlador/participante_evento_controler.php', { funcion, id_evento, nombre_participante, tipo_doc, documento, fec_nac_part, telefono, email, tipo_sangre, nacionalidad, departamento_res, municipio_res, eps }, (response) => {            
             if (response == 'registrado') {
                 $('#divCreate').hide('slow');
                 $('#divCreate').show(1000);

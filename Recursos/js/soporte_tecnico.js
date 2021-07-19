@@ -9,7 +9,7 @@ $(document).ready(function() {
     function buscar_avatar() {
         var id = $('#id_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -20,7 +20,7 @@ $(document).ready(function() {
         var id_voluntario = $('#id_usuario').val();
         let descripcion = $('#txtDescSoporte').val();
         funcion = 'crear_soporte';
-        $.post('../Controlador/soporte_controler.php', { funcion, id_voluntario, descripcion }, (response) => {
+        $.post('../../Controlador/soporte_controler.php', { funcion, id_voluntario, descripcion }, (response) => {
             if (response == 'creado') {
                 $('#divCreate').hide('slow');
                 $('#divCreate').show(1000);
@@ -48,7 +48,7 @@ $(document).ready(function() {
     function buscarSolicitudes(consulta) {
         var funcion = "buscar_solicitud";
         var id_voluntario = $('#id_usuario').val();
-        $.post('../Controlador/soporte_controler.php', { consulta, funcion, id_voluntario, tipo_usuario }, (response) => {
+        $.post('../../Controlador/soporte_controler.php', { consulta, funcion, id_voluntario, tipo_usuario }, (response) => {
             const objetos = JSON.parse(response);
             let template = `<div class="col-md-12">
                                 <div class="card">
@@ -68,7 +68,7 @@ $(document).ready(function() {
             objetos.forEach(objeto => {
                 template += `                   <tr idSoporte=${objeto.id}>
                                                     <td style="width: 2px">
-                                                    <a href='../Vista/soporte_pdf.php?id=${objeto.id}&hoja=carta' target='_blank'><button class='btn btn-sm btn-info ml-1' type='button' title='Exportar'>
+                                                    <a href='../../Vista/soporte_pdf.php?id=${objeto.id}&hoja=carta' target='_blank'><button class='btn btn-sm btn-info ml-1' type='button' title='Exportar'>
                                                         <i class="fas fa-file-pdf"></i> PDF
                                                     </button></a>
                                                     </td>
@@ -128,7 +128,7 @@ $(document).ready(function() {
         let comentario = $('#txtResSoporte').val();
         let id_soporte = $('#txtIdSoporte').val();
         funcion = 'crear_comentario';
-        $.post('../Controlador/soporte_controler.php', { funcion, id_soporte, id_voluntario, comentario }, (response) => {
+        $.post('../../Controlador/soporte_controler.php', { funcion, id_soporte, id_voluntario, comentario }, (response) => {
             if (response == 'update') {
                 $('#divCreateRes').hide('slow');
                 $('#divCreateRes').show(1000);
@@ -147,7 +147,7 @@ $(document).ready(function() {
     $('#form_img_soporte').submit(e => {
         let formData = new FormData($('#form_img_soporte')[0]);
         $.ajax({
-            url: '../Controlador/soporte_controler.php',
+            url: '../../Controlador/soporte_controler.php',
             type: 'POST',
             data: formData,
             cache: false,
@@ -175,7 +175,7 @@ $(document).ready(function() {
         let id_soporte = $('#txtIdEstadoSop').val();
         let estado = $('#selEstado').val();
         funcion = 'cambiar_estado';
-        $.post('../Controlador/soporte_controler.php', { funcion, id_soporte, estado }, (response) => {
+        $.post('../../Controlador/soporte_controler.php', { funcion, id_soporte, estado }, (response) => {
             if (response == 'update') {
                 $('#updateEstado').hide('slow');
                 $('#updateEstado').show(1000);
@@ -183,7 +183,7 @@ $(document).ready(function() {
                 $('#form_estado_soporte').trigger('reset');
                 buscarSolicitudes();
                 funcion = 'contar_soporte';
-                $.post('../Controlador/soporte_controler.php', { funcion }, (response) => {
+                $.post('../../Controlador/soporte_controler.php', { funcion }, (response) => {
                     const obj = JSON.parse(response);
                     $('#spanContacto').text(obj.cantidad);
                 });

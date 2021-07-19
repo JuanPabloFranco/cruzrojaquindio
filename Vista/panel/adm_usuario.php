@@ -1,14 +1,14 @@
 <?php
 session_start();
 if (isset($_SESSION['type_id'])) {
-    include_once '../Vista/layouts/header.php'
+    include_once '../../Vista/layouts/header.php'
 ?>
 
     <title>Adm | Voluntario</title>
     <?php
-    include_once '../Vista/layouts/nav.php';
+    include_once '../../Vista/layouts/nav.php';
     ?>
-    <script src="../Recursos/js/usuario2.js"></script>
+    <script src="../../Recursos/js/usuario2.js"></script>
     <input type="hidden" id="id_usuario" value="<?php echo $_SESSION['id_user']; ?>">
     <input type="hidden" id="tipo_usuario" value="<?php echo $_SESSION['type_id']; ?>">
     <!-- Medicamento -->
@@ -1031,8 +1031,8 @@ if (isset($_SESSION['type_id'])) {
     </div>
     <!-- /.content-wrapper -->
 <?php
-    include_once '../Vista/layouts/footer.php';
+    include_once '../../Vista/layouts/footer.php';
 } else {
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 }
 ?>

@@ -5,8 +5,8 @@ $fecha = date("Y-m-d");
 
 <body>
     <?php
-    require '../Recursos/fpdf/plantillas/PDFCarta.php';
-    include_once '../Conexion/consulSQL.php';
+    require '../../Recursos/fpdf/plantillas/PDFCarta.php';
+    include_once '../../Conexion/consulSQL.php';
     $pdf = new PDFCarta('P', 'mm', array(216, 280));
 
 
@@ -61,7 +61,7 @@ $fecha = date("Y-m-d");
 
     if ($vecResVol[2] <> "") {
         $y = $pdf->GetY();
-        $pdf->Cell(190, $pdf->GetY(), $pdf->Image('../Recursos/img/soporte/' . $vecResVol[2], 20, $pdf->GetY() + 3, 175), 0, 1, 'C', 0);
+        $pdf->Cell(190, $pdf->GetY(), $pdf->Image('../../Recursos/img/soporte/' . $vecResVol[2], 20, $pdf->GetY() + 3, 175), 0, 1, 'C', 0);
     }
 
     $title = 'SOPORTE No. ' . " " . utf8_decode($_GET['id']);

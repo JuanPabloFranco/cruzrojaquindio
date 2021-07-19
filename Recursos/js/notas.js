@@ -9,7 +9,7 @@ $(document).ready(function() {
     function buscar_avatar() {
         var id = $('#id_usuario').val();
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -47,7 +47,7 @@ $(document).ready(function() {
         let descripcion = $('#txtDescNota').val();
         let id_autor = $('#txtId_autor').val();
         funcion = 'crear_nota';
-        $.post('../Controlador/nota_controler.php', { funcion, id_autor, tipo, dirigido, id_cargo, id_sede, id_usuario, fechaini, fechafin, descripcion }, (response) => {
+        $.post('../../Controlador/nota_controler.php', { funcion, id_autor, tipo, dirigido, id_cargo, id_sede, id_usuario, fechaini, fechafin, descripcion }, (response) => {
             if (response == 'creado') {
                 $('#divCreate').hide('slow');
                 $('#divCreate').show(1000);
@@ -66,7 +66,7 @@ $(document).ready(function() {
     function buscarNotas(consulta) {
         var id = $('#id_usuario').val();
         var funcion = "buscar_nota";
-        $.post('../Controlador/nota_controler.php', { consulta, funcion, id }, (response) => {
+        $.post('../../Controlador/nota_controler.php', { consulta, funcion, id }, (response) => {
             const objetos = JSON.parse(response);
             num = 0;
             let template = `<div class="col-md-12">
@@ -122,7 +122,7 @@ $(document).ready(function() {
         const id = $(elemento).attr('idNota');
         $('#txtId_NotaEd').val(id);
         funcion = 'cargarNotaEdit';
-        $.post('../Controlador/nota_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/nota_controler.php', { id, funcion }, (response) => {
             console.log(response)
             const obj = JSON.parse(response);
             $('#selTipoNota2').val(obj.tipo_nota);
@@ -150,9 +150,9 @@ $(document).ready(function() {
         const id = $(elemento).attr('idNota');
         $('#txtIdNotaImg').val(id);
         funcion = 'cargarNotaImg';
-        $.post('../Controlador/nota_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/nota_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
-            $('#notaImg').attr('src', '../Recursos/img/notas/' + obj.imagen);
+            $('#notaImg').attr('src', '../../Recursos/img/notas/' + obj.imagen);
             $('#txtNotaImg').html(obj.tipo_nota + " dirigido a " + obj.dirigido);
         });
     });
@@ -168,7 +168,7 @@ $(document).ready(function() {
             if (result.isConfirmed) {
                 const id = $(elemento).attr('idNota');
                 funcion = 'eliminarNota';
-                $.post('../Controlador/nota_controler.php', { id, funcion }, (response) => {
+                $.post('../../Controlador/nota_controler.php', { id, funcion }, (response) => {
                     Swal.fire('Eliminado!', '', 'success');
                     buscarNotas();
                 });               
@@ -210,7 +210,7 @@ $(document).ready(function() {
         let descripcion = $('#txtDescNota2').val();
         let id = $('#txtId_NotaEd').val();
         funcion = 'editar_nota';
-        $.post('../Controlador/nota_controler.php', { funcion, id, tipo, dirigido, id_cargo, id_sede, id_usuario, fechaini, fechafin, descripcion }, (response) => {
+        $.post('../../Controlador/nota_controler.php', { funcion, id, tipo, dirigido, id_cargo, id_sede, id_usuario, fechaini, fechafin, descripcion }, (response) => {
             if (response == 'update') {
                 $('#updateObj').hide('slow');
                 $('#updateObj').show(1000);
@@ -228,7 +228,7 @@ $(document).ready(function() {
     $('#form_img_nota').submit(e => {
         let formData = new FormData($('#form_img_nota')[0]);
         $.ajax({
-            url: '../Controlador/nota_controler.php',
+            url: '../../Controlador/nota_controler.php',
             type: 'POST',
             data: formData,
             cache: false,

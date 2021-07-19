@@ -8,7 +8,7 @@ $(document).ready(function () {
     buscarEventos();
     function buscar_avatar() {
         funcion = 'buscarAvatar';
-        $.post('../Controlador/usuario_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/usuario_controler.php', { id, funcion }, (response) => {
             const usuario = JSON.parse(response);
             $('#avatar4').attr('src', usuario.avatar);
         });
@@ -17,7 +17,7 @@ $(document).ready(function () {
     $('#form_crear_evento').submit(e => {
         let formData = new FormData($('#form_crear_evento')[0]);
         $.ajax({
-            url: '../Controlador/evento_controler.php',
+            url: '../../Controlador/evento_controler.php',
             type: 'POST',
             data: formData,
             cache: false,
@@ -51,7 +51,7 @@ $(document).ready(function () {
 
     function buscarEventos(consulta) {
         var funcion = "buscar_evento";
-        $.post('../Controlador/evento_controler.php', { consulta, funcion, id, id_sede }, (response) => {
+        $.post('../../Controlador/evento_controler.php', { consulta, funcion, id, id_sede }, (response) => {
             const objetos = JSON.parse(response);
             let template = "";
             num = 0;
@@ -75,7 +75,7 @@ $(document).ready(function () {
                         </ul>`;
                 template += ` </div>
                     </div><br>
-                    <a href='../Vista/evento.php?modulo=evento&&id=${obj.id}' class='btn btn-sm btn-info mr-1 float-right' style='display: flex;' type='button' >
+                    <a href='../../Vista/evento.php?modulo=evento&&id=${obj.id}' class='btn btn-sm btn-info mr-1 float-right' style='display: flex;' type='button' >
                             <i class="fas fa-pager mr-1"> Detalle Evento</i>
                         </a>
                   </div>`;
@@ -89,7 +89,7 @@ $(document).ready(function () {
         const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement;
         const id = $(elemento).attr('eventoId');
         funcion = 'cargarEvento';
-        $.post('../Controlador/evento_controler.php', { id, funcion }, (response) => {
+        $.post('../../Controlador/evento_controler.php', { id, funcion }, (response) => {
             const obj = JSON.parse(response);
             $('#txtTituloNombre').html(obj.nombre_evento);
             $('#regionEvento').html(obj.nombre_region);

@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id_cargo'] >= 0)) {
-    include_once '../Vista/layouts/header.php'
+    include_once '../../Vista/layouts/header.php'
 ?>
     <title>Adm | Reportes Visitas</title>
     <?php
-    include_once '../Vista/layouts/nav.php';
+    include_once '../../Vista/layouts/nav.php';
     ?>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.bootstrap4.min.css" />
@@ -24,8 +24,8 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/table2excel@1.0.4/dist/table2excel.min.js"></script>
     <!-- Modal -->
-    <script src="../Recursos/js/reportes visitas.js"></script>
-    <form action="../Recursos/xls/excelUsuarios.php" method="post" role="form" id="formExcel">
+    <script src="../../Recursos/js/reportes visitas.js"></script>
+    <form action="../../Recursos/xls/excelUsuarios.php" method="post" role="form" id="formExcel">
         <input type="hidden" id="txtId_usuario" value="<?php echo $_SESSION['id_user']; ?>">
         <input type="hidden" id="txtTipoUsuario" value="<?php echo $_SESSION['type_id']; ?>" name="id_tipo">
         <input type="hidden" id="txtAccion" name="accion">
@@ -43,7 +43,7 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="../Vista/adm_panel.php">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="../../Vista/adm_panel.php">Inicio</a></li>
                             <li class="breadcrumb-item active">Reportes Visitas</li>
                         </ol>
                     </div>
@@ -169,8 +169,8 @@ if (isset($_SESSION['type_id']) && ($_SESSION['type_id'] <= 2) || ($_SESSION['id
     </div>
     <!-- /.content-wrapper -->
 <?php
-    include_once '../Vista/layouts/footer.php';
+    include_once '../../Vista/layouts/footer.php';
 } else {
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 }
 ?>
